@@ -1,10 +1,10 @@
-package com.books;
+package com.books.application;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class Application
 {
     public static void main( String[] args )
     {
