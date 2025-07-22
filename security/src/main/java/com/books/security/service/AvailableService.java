@@ -40,7 +40,22 @@ public class AvailableService {
         }
         return sessionWithUser;
     }
-
-    /* ************************************************************************************************************** */
-
+    public Integer getSessionId(Claims claims) throws SystemException {
+        try {
+            JwtClaim jwtClaim = JwtService.validateClaims(claims);
+            UserContextDto sessionWithUser = this.userSessionBaseDao.getSimpleSessionWithUser(jwtClaim.getSessionId());
+            if (sessionWithUser == null) {
+                throw new SystemException(SystemError.SESSION_EXPIRED, "sessionId", 1010);
+            }
+            if (sessionWithUser.isSuspended()) {
+                throw new SystemException(SystemError.USER_NOT_ACTIVE, "userId:" + sessionWithUser.getId(), 2052);
+            }
+            if (sessionWithUser.getLockExpired() != null && sessionWithUser.getLockExpired().isAfter(LocalDateTime.now())) {
+                throw new SystemException(SystemError.USER_NOT_ACTIVE, "userId:" + sessionWithUser.getId(), 3002);
+            }
+            return jwtClaim.getSessionId();
+        } catch (SystemException e) {
+            throw new SystemException(SystemError.SESSION_EXPIRED, "", 2053);
+        }
+    }
 }

@@ -91,6 +91,16 @@ public class JwtService {
         return this.availableService.getConfirmedUserByAuthentication(claims);
     }
 
+    public Integer extractSessionIdFromRefreshToken(String token) throws SystemException {
+        Claims claims = this.extractClaims(token, SecurityConstant.REFRESH_TOKEN_SUBJECT);
+        return this.availableService.getSessionId(claims);
+    }
+
+    public Integer extractSessionIdFromAccessToken(String token) throws SystemException {
+        Claims claims = this.extractClaims(token, SecurityConstant.ACCESS_TOKEN_SUBJECT);
+        return this.availableService.getSessionId(claims);
+    }
+
     /* ****************************************************************************************************************** */
 
     public List<SecurityAccessRule> generateAccessRule() throws SystemException {

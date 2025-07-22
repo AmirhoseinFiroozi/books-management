@@ -36,10 +36,31 @@ public class UserSessionBaseDao extends Dao<UserContextDto> {
                 " where user_session.id_pk =:id and users.deleted is null" +
                 " group by user_session.id_pk,users.id_pk";
 
-        Query query = getSession().createNativeQuery(sql);
+        Query<UserContextDto> query = getSession().createNativeQuery(sql, UserContextDto.class);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("id", id);
         List<UserContextDto> result = querySql(query, parameters, UserContextDto.class);
-        return result.isEmpty() ? null : result.get(0);
+        return result.isEmpty() ? null : result.getFirst();
+    }
+
+    public UserContextDto getSimpleSessionWithUser(int id) {
+        String sql = "select user_session.id_pk as \"sessionId\"," +
+                " users.id_pk as \"id\"," +
+                " users.suspended," +
+                " users.lock_expired as \"lockExpired\"," +
+                " users.phone_number_confirmed as \"mobileConfirmed\"," +
+                " users.email_confirmed as \"emailConfirmed\"," +
+                " users.full_name as \"fullName\"," +
+                " '' as \"permissionIds\"" +
+                " from map.user_session user_session " +
+                " inner join map.users users " +
+                " on user_session.user_id_fk = users.id_pk" +
+                " where user_session.id_pk =:id and users.deleted is null";
+
+        Query<UserContextDto> query = getSession().createNativeQuery(sql, UserContextDto.class);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("id", id);
+        List<UserContextDto> result = querySql(query, parameters, UserContextDto.class);
+        return result.isEmpty() ? null : result.getFirst();
     }
 }

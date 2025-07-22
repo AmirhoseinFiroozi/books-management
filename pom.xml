@@ -24,6 +24,9 @@
 
     <properties>
         <java.version>21</java.version>
+        <google.libphonenumber.version>8.13.1</google.libphonenumber.version>
+        <reflection.version>0.10.2</reflection.version>
+        <commons-file.version>1.4</commons-file.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -86,6 +89,24 @@
             <groupId>com.github.jknack</groupId>
             <artifactId>handlebars</artifactId>
             <version>4.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+            <version>${google.libphonenumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflection.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-file.version}</version>
         </dependency>
 
     </dependencies>
