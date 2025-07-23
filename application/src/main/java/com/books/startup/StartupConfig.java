@@ -1,4 +1,4 @@
-package com.books.utility.config;
+package com.books.startup;
 
 import com.books.utility.commons.annotations.Attachment;
 import com.books.utility.file.service.IFileService;
@@ -13,12 +13,12 @@ import java.lang.reflect.Field;
 import java.util.Set;
 
 @Component
-public class StartUpConfig {
+public class StartupConfig {
 
     private final IFileService fileService;
 
     @Autowired
-    public StartUpConfig(IFileService fileService) {
+    public StartupConfig(IFileService fileService) {
         this.fileService = fileService;
     }
 
