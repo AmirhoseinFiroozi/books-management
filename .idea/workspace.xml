@@ -4,44 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="ref: change .gitignore">
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/entity/SecurityPermissionEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/service/BasePermissionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/statics/PermissionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/realm/entity/SecurityRealmEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/realm/service/BaseRealmService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/rest/entity/SecurityRestEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/rest/service/BaseRestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/entity/SecurityRoleEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/service/BaseRoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/statics/RoleType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/resources/application-dev.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/resources/application-prod.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/security/src/main/java/com/books/security/statics/RoleCategoryType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="imp: add security related entities">
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/book/dto/BookFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/book/dto/BookOut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/book/dto/BookPageableFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/book/respository/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/book/service/BookService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/StartupConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/AccountInfoOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/AccountInfoOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/CompanyInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/ForgotPasswordIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/ResetPasswordIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/SecurityConfigOut.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/SendOtpIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/in/rolerealm/entity/SecurityUserRoleRealmEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/in/rolerealm/entity/SecurityUserRoleRealmEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/entity/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/ApplicationProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/Notificaiton/Notification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/Amazon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/EmailConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/EmailProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/Gmail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/minio/MinioConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/Magfa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/SmsConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/SmsIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/SmsProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/entity/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/book/entity/BookEntity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -122,7 +94,7 @@
       <updated>1753018015084</updated>
       <workItem from="1753018016384" duration="20000" />
       <workItem from="1753077718827" duration="5325000" />
-      <workItem from="1753681964749" duration="2933000" />
+      <workItem from="1753681964749" duration="4059000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -156,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753079214606</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="imp: add security related entities">
+      <option name="closed" value="true" />
+      <created>1753703484891</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753703484891</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,7 +154,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="ref: change .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="ref: change .gitignore" />
+    <MESSAGE value="imp: add security related entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="imp: add security related entities" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
