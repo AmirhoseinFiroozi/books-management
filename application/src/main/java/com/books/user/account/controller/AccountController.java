@@ -64,12 +64,4 @@ public class AccountController {
         UserContextDto contextDto = JwtUser.getAuthenticatedUser();
         return new ResponseEntity<>(accountService.getUser(contextDto.getId()), HttpStatus.OK);
     }
-
-    @Operation(description = "Update User Image")
-    @PatchMapping(path = {"${rest.identified}" + AccountRestApi.USERS_IMAGE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserImageOut> updateProfileImage(@RequestBody @Valid UserImageIn model,
-                                                           BindingResult bindingResult, HttpServletRequest request) throws SystemException {
-        UserContextDto contextDto = JwtUser.getAuthenticatedUser();
-        return new ResponseEntity<>(accountService.updateUserImage(contextDto.getId(), model), HttpStatus.OK);
-    }
 }

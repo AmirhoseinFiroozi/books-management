@@ -1,7 +1,6 @@
 package com.books.user.user.entity;
 
 import com.books.user.in.rolerealm.entity.SecurityUserRoleRealmEntity;
-import com.books.utility.commons.annotations.Attachment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,10 +23,6 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "User_Sequence")
     @SequenceGenerator(name = "User_Sequence", sequenceName = "USER_SEQ", allocationSize = 1)
     private int id;
-
-    @Column(name = "IMAGE", length = 100)
-    @Attachment(container = "users", bucket = "image")
-    private String image;
 
     @Column(name = "FULL_NAME", length = 201)
     private String fullName;
@@ -60,10 +55,4 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "userEntity", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<SecurityUserRoleRealmEntity> roleRealms = new HashSet<>();
-
-    public UserEntity cloneImages() {
-        UserEntity result = new UserEntity();
-        result.setImage(this.getImage());
-        return result;
-    }
 }

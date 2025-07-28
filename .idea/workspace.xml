@@ -5,27 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="ref: change .gitignore">
-      <change afterPath="$PROJECT_DIR$/application/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/config/FilterBaseBinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/interfaces/Filterable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/interfaces/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/repository/Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/repository/ReportDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/service/AbstractFilterableService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/service/AbstractService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/src/main/java/com/books/database/statics/constants/Parameterized.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/security/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utility/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/entity/SecurityPermissionEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/service/BasePermissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/statics/PermissionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/realm/entity/SecurityRealmEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/realm/service/BaseRealmService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/rest/entity/SecurityRestEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/rest/service/BaseRestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/entity/SecurityRoleEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/service/BaseRoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/statics/RoleType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/resources/application-dev.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/resources/application-prod.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/security/src/main/java/com/books/security/statics/RoleCategoryType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/books/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/StartupConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/AccountInfoOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/AccountInfoOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/CompanyInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/ForgotPasswordIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/ResetPasswordIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/SecurityConfigOut.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/SendOtpIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/in/rolerealm/entity/SecurityUserRoleRealmEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/in/rolerealm/entity/SecurityUserRoleRealmEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/ApplicationProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/Notificaiton/Notification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/Amazon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/EmailConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/EmailProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/email/Gmail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/minio/MinioConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/Magfa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/SmsConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/SmsIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/src/main/java/com/books/utility/config/model/sms/SmsProvider.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -75,6 +103,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.books-management [clean,install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -93,6 +122,7 @@
       <updated>1753018015084</updated>
       <workItem from="1753018016384" duration="20000" />
       <workItem from="1753077718827" duration="5325000" />
+      <workItem from="1753681964749" duration="2933000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />

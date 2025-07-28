@@ -1,9 +1,9 @@
 package com.books.user.account.dto;
 
 import com.books.security.dto.TokenInfo;
-import com.books.security.statics.RoleCategoryType;
 import com.books.security.permission.entity.SecurityPermissionEntity;
 import com.books.security.permission.statics.PermissionType;
+import com.books.security.statics.RoleCategoryType;
 import com.books.user.in.rolerealm.entity.SecurityUserRoleRealmEntity;
 import com.books.user.user.entity.UserEntity;
 import jakarta.validation.constraints.NotNull;

@@ -101,24 +101,6 @@ public class AccountService {
         return new UserOut(userService.getEntityById(id, null));
     }
 
-    public UserImageOut updateUserImage(int id, UserImageIn model) throws SystemException {
-        UserEntity userEntity = userService.getEntityById(id, null);
-        UserEntity oldModel = userEntity.cloneImages();
-        userEntity.setImage(model.getImage());
-        fileService.manipulateAttachments(oldModel, userEntity);
-        userService.updateEntity(userEntity);
-        return new UserImageOut(userEntity);
-    }
-
-    private void validateNewPassword(ResetPasswordIn model) throws SystemException {
-        if (model.getNewPassword().length() > applicationProperties.getIdentitySettings().getPassword().getMaxLength() ||
-                model.getNewPasswordConfirm().length() > applicationProperties.getIdentitySettings().getPassword().getMaxLength() ||
-                model.getNewPassword().length() < applicationProperties.getIdentitySettings().getPassword().getRequiredLength() ||
-                model.getNewPasswordConfirm().length() < applicationProperties.getIdentitySettings().getPassword().getRequiredLength()) {
-            throw new SystemException(SystemError.ILLEGAL_REQUEST, "password length problem", 3012);
-        }
-    }
-
     private void checkUserSuspension(UserEntity userEntity) throws SystemException {
         if (userEntity != null) {
             if (userEntity.getLockExpired() != null && userEntity.getLockExpired().isAfter(LocalDateTime.now())) {
