@@ -1,5 +1,6 @@
 package com.books.book.shelf.entity;
 
+import com.books.book.book.entity.BookEntity;
 import com.books.user.user.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "BOOK_SHELF")
@@ -28,4 +30,11 @@ public class BookShelfEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID_FK", insertable = false, updatable = false)
     private UserEntity user;
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "bookShelf", orphanRemoval = true)
+    private Set<BookEntity> books;
+
+    @PrePersist
+    public void fillCreated() {
+        this.created = LocalDateTime.now();
+    }
 }
