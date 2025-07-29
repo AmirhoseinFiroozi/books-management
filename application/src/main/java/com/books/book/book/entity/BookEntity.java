@@ -24,7 +24,7 @@ public class BookEntity {
     private String name;
     @Column(name = "CREATED", nullable = false)
     private LocalDateTime created;
-    @Column(name = "NAME", length = 255, nullable = false)
+    @Column(name = "FILE", length = 255, nullable = false)
     private String file;
     @Column(name = "USER_ID_FK", nullable = false)
     private int userId;

@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="imp: add security related entities">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="imp: complete BookShelfService" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,12 +26,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "AmirhoseinFiroozi"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AmirhoseinFiroozi&quot;
   }
-}]]></component>
+}</component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
       <RecentBranches>
@@ -62,7 +60,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/AmirhoseinFiroozi/books-management.git",
-    "accountId": "469a6f71-9a23-42c9-ac93-fb6be005fa03"
+    "accountId": "08011cac-7acf-40c4-b9fa-a4c5b5b1e7be"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -84,16 +82,23 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.Api.executor": "Run",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "21",
-    "last_opened_file_path": "/home/mtyn/IdeaProjects/books-management",
-    "settings.editor.selected.configurable": "http.proxy"
+    "last_opened_file_path": "/home/mtyn/IdeaProjects/vrp-helm",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="Api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="application" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.books.application.Application" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.books.application.Api" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -103,6 +108,7 @@
     <attachedChunks>
       <set>
         <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.27812.49" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.27812.49" />
       </set>
     </attachedChunks>
   </component>
@@ -118,6 +124,7 @@
       <workItem from="1753077718827" duration="5325000" />
       <workItem from="1753681964749" duration="4059000" />
       <workItem from="1753775801266" duration="647000" />
+      <workItem from="1753776728875" duration="12719000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -159,8 +166,27 @@
       <option name="project" value="LOCAL" />
       <updated>1753703484891</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="imp: add BookShelfEntity and Complete BookService">
+      <option name="closed" value="true" />
+      <created>1753794099847</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1753794099847</updated>
+    </task>
+    <task id="LOCAL-00007" summary="imp: complete BookShelfService">
+      <option name="closed" value="true" />
+      <created>1753795449880</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1753795449880</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -178,7 +204,9 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="ref: change .gitignore" />
     <MESSAGE value="imp: add security related entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="imp: add security related entities" />
+    <MESSAGE value="imp: add BookShelfEntity and Complete BookService" />
+    <MESSAGE value="imp: complete BookShelfService" />
+    <option name="LAST_COMMIT_MESSAGE" value="imp: complete BookShelfService" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
