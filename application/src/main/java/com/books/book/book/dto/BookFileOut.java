@@ -1,4 +1,4 @@
-package com.books.book.dto;
+package com.books.book.book.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

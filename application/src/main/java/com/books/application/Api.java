@@ -18,9 +18,9 @@ import java.util.TimeZone;
 @EnableScheduling
 @EntityScan(basePackages = {"com.books.*"})
 @ComponentScan(basePackages = {"com.books.utility.*", "com.books.*"})
-public class Application {
+public class Api {
     public static void main(String[] args) {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Api.class, args);
     }
 }

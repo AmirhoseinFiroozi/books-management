@@ -1,4 +1,4 @@
-package com.books.book.dto;
+package com.books.book.book.dto;
 
 import com.books.utility.commons.repository.dto.SortOption;
 import com.books.utility.commons.repository.statics.SortType;

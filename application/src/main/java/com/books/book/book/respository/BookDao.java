@@ -1,6 +1,6 @@
-package com.books.book.respository;
+package com.books.book.book.respository;
 
-import com.books.book.entity.BookEntity;
+import com.books.book.book.entity.BookEntity;
 import com.books.database.repository.Dao;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;

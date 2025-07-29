@@ -1,6 +1,6 @@
-package com.books.book.dto;
+package com.books.book.book.dto;
 
-import com.books.book.entity.BookEntity;
+import com.books.book.book.entity.BookEntity;
 import lombok.Getter;
 import lombok.Setter;
 
