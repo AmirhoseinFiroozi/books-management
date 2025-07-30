@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="imp: add to changes.sql">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/resources/application-dev.properties" afterDir="false" />
-    </list>
+    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="feat: add banner.txt" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,7 +135,7 @@
       <workItem from="1753775801266" duration="647000" />
       <workItem from="1753776728875" duration="12719000" />
       <workItem from="1753854242462" duration="12801000" />
-      <workItem from="1753879887546" duration="2886000" />
+      <workItem from="1753879887546" duration="4131000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -236,7 +233,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753881224200</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="imp: add to changes.sql">
+      <option name="closed" value="true" />
+      <created>1753884890618</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1753884890618</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: add banner.txt">
+      <option name="closed" value="true" />
+      <created>1753886070901</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1753886070901</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +275,8 @@
     <MESSAGE value="imp: complete BookShelfService" />
     <MESSAGE value="imp: add configs to application module" />
     <MESSAGE value="imp: add to changes.sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="imp: add to changes.sql" />
+    <MESSAGE value="feat: add banner.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add banner.txt" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
