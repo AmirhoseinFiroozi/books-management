@@ -4,7 +4,76 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="imp: complete BookShelfService" />
+    <list default="true" id="8a16bdee-179d-4a30-8137-92a6884b3d24" name="Changes" comment="imp: complete BookShelfService">
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/config/ApplicationPropertiesConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/config/PropertyInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/config/PropertyInitializerEventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/resources/database/changes.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/resources/security/0.Initialize-data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/resources/security/1.AdminSecurity.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/resources/security/2.MemberSecurity.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/dto/BookFileOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/dto/BookFileOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/dto/BookFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/dto/BookFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/dto/BookIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/dto/BookIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/dto/BookOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/dto/BookOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/dto/BookPageableFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/dto/BookPageableFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/dto/BookUpdateIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/dto/BookUpdateIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/entity/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/entity/BookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/respository/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/respository/BookDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/book/statics/constants/BookRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/book/statics/constants/BookRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/controller/BookShelfController.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/controller/BookShelfController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/dto/BookShelfFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/dto/BookShelfFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/dto/BookShelfIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/dto/BookShelfIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/dto/BookShelfOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/dto/BookShelfOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/dto/BookShelfPageableFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/dto/BookShelfPageableFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/entity/BookShelfEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/entity/BookShelfEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/repository/BookShelfDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/repository/BookShelfDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/service/BookShelfService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/service/BookShelfService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/book/shelf/statics/constants/BookShelfRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/book/shelf/statics/constants/BookShelfRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/entity/SecurityPermissionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/permission/entity/SecurityPermissionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/service/BasePermissionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/permission/service/BasePermissionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/permission/statics/PermissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/permission/statics/PermissionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/realm/entity/SecurityRealmEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/realm/entity/SecurityRealmEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/realm/service/BaseRealmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/realm/service/BaseRealmService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/rest/entity/SecurityRestEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/rest/entity/SecurityRestEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/rest/service/BaseRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/rest/service/BaseRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/entity/SecurityRoleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/role/entity/SecurityRoleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/service/BaseRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/role/service/BaseRoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/security/role/statics/RoleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/security/role/statics/RoleType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/ApplicationPropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/ApplicationPropertiesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/global/dto/GlobalPropertyEditeIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/global/dto/GlobalPropertyEditeIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/global/entity/GlobalPropertyEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/global/entity/GlobalPropertyEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/global/entity/GlobalPropertyId.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/global/entity/GlobalPropertyId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/global/repository/BaseGlobalPropertyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/global/repository/BaseGlobalPropertyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/global/service/BaseGlobalPropertyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/global/service/BaseGlobalPropertyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/global/statics/PropertyProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/global/statics/PropertyProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/init/DBPropertyInitializerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/init/DBPropertyInitializerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/init/IPropertyInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/init/IPropertyInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/init/model/ELPropertiesModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/startup/init/model/ELPropertiesModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/startup/init/statics/PropertiesFetchMode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/account/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/AccountInfoOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/account/dto/AccountInfoOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/LoginIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/account/dto/LoginIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/LoginOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/account/dto/LoginOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/dto/UserOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/account/dto/UserOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/account/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/account/statics/AccountRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/account/statics/AccountRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/in/rolerealm/entity/SecurityUserRoleRealmEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/in/rolerealm/entity/SecurityUserRoleRealmEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/in/rolerealm/service/UserRoleRealmService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/in/rolerealm/service/UserRoleRealmService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/session/dto/UserSessionIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/session/dto/UserSessionIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/session/entity/UserSessionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/session/entity/UserSessionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/session/repository/BaseUserSessionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/session/repository/BaseUserSessionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/session/service/UserSessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/session/service/UserSessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/user/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/repository/BaseUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/user/repository/BaseUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/statics/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/user/statics/Gender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/statics/UserMedium.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/user/statics/UserMedium.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/com/books/user/user/statics/UserRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/com/books/application/user/user/statics/UserRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,12 +126,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AmirhoseinFiroozi/books-management.git",
-    "accountId": "08011cac-7acf-40c4-b9fa-a4c5b5b1e7be"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AmirhoseinFiroozi/books-management.git&quot;,
+    &quot;accountId&quot;: &quot;08011cac-7acf-40c4-b9fa-a4c5b5b1e7be&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -83,7 +152,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.Api.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "develop",
     "jdk.selected.JAVA_MODULE": "21",
     "last_opened_file_path": "/home/mtyn/IdeaProjects/vrp-helm",
     "node.js.detected.package.eslint": "true",
@@ -125,6 +194,7 @@
       <workItem from="1753681964749" duration="4059000" />
       <workItem from="1753775801266" duration="647000" />
       <workItem from="1753776728875" duration="12719000" />
+      <workItem from="1753854242462" duration="4707000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
