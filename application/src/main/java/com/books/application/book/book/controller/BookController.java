@@ -57,7 +57,6 @@ public class BookController {
     @GetMapping(path = BookRestApi.BOOKS_ID, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookOut> getById(@PathVariable(name = "id") int id, HttpServletRequest httpServletRequest) throws SystemException {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
-
         return new ResponseEntity<>(bookService.getById(userContextDto.getId(), id), HttpStatus.OK);
     }
 

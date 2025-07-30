@@ -19,8 +19,6 @@ public class UserContextDto {
     private String fullName;
     private boolean suspended;
     private LocalDateTime lockExpired;
-    private boolean mobileConfirmed;
-    private boolean emailConfirmed;
     private Set<Integer> permissionIds;
 
     public UserContextDto(Integer id, Integer sessionId, String fullName, boolean suspended, Timestamp lockExpired, boolean mobileConfirmed, boolean emailConfirmed, String permissionIds) {
@@ -31,8 +29,6 @@ public class UserContextDto {
         if (lockExpired != null) {
             this.lockExpired = lockExpired.toLocalDateTime();
         }
-        this.mobileConfirmed = mobileConfirmed;
-        this.emailConfirmed = emailConfirmed;
         this.permissionIds = StringService
                 .convertCommaSeparatedStringToList(permissionIds)
                 .stream()

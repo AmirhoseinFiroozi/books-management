@@ -22,16 +22,14 @@ public class UserSessionBaseDao extends Dao<UserContextDto> {
                 " users.id_pk as \"id\"," +
                 " users.suspended," +
                 " users.lock_expired as \"lockExpired\"," +
-                " users.mobile_confirmed as \"mobileConfirmed\"," +
-                " users.email_confirmed as \"emailConfirmed\"," +
                 " users.full_name as \"fullName\"," +
                 " array_to_string(array_agg(distinct security_role_permission.permission_id_fk), ',') as \"permissionIds\"" +
-                " from map.user_session user_session " +
-                " inner join map.users users " +
+                " from user_session user_session " +
+                " inner join users users " +
                 " on user_session.user_id_fk = users.id_pk" +
-                " left join map.security_user_role_realm user_role_realm" +
+                " left join security_user_role_realm user_role_realm" +
                 " on users.id_pk = user_role_realm.user_id_fk" +
-                " left join map.security_role_permission security_role_permission" +
+                " left join security_role_permission security_role_permission" +
                 " on  user_role_realm.role_id_fk = security_role_permission.role_id_fk" +
                 " where user_session.id_pk =:id and users.deleted is null" +
                 " group by user_session.id_pk,users.id_pk";
@@ -48,12 +46,10 @@ public class UserSessionBaseDao extends Dao<UserContextDto> {
                 " users.id_pk as \"id\"," +
                 " users.suspended," +
                 " users.lock_expired as \"lockExpired\"," +
-                " users.phone_number_confirmed as \"mobileConfirmed\"," +
-                " users.email_confirmed as \"emailConfirmed\"," +
                 " users.full_name as \"fullName\"," +
                 " '' as \"permissionIds\"" +
-                " from map.user_session user_session " +
-                " inner join map.users users " +
+                " from user_session user_session " +
+                " inner join users users " +
                 " on user_session.user_id_fk = users.id_pk" +
                 " where user_session.id_pk =:id and users.deleted is null";
 

@@ -22,8 +22,8 @@ public class RestBaseDao extends Dao<UserContextDto> {
                 "select security_rest.http_method as \"httpMethod\"," +
                         " security_rest.url," +
                         " array_to_string(array_agg(distinct security_permission_rest.permission_id_fk), ',') as access" +
-                        " from map.security_rest security_rest" +
-                        " left join map.security_permission_rest security_permission_rest" +
+                        " from security_rest security_rest" +
+                        " left join security_permission_rest security_permission_rest" +
                         " on security_rest.id_pk = security_permission_rest.rest_id_fk" +
                         " group by security_rest.id_pk";
         Query<SecurityAccessRule> query = getSession().createNativeQuery(sql, SecurityAccessRule.class);

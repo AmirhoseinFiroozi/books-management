@@ -1,6 +1,6 @@
 INSERT INTO vrp.USERS (ID_PK, HASHED_PASSWORD, PHONE_NUMBER, EMAIL,
                        CREATED, ACCESS_FAILED_COUNT, LOCK_EXPIRED, SUSPENDED, DELETED, FULL_NAME)
-VALUES (-1, E 'ANciKBruIHvNz+RtxSFevf3zx7vmqlD7efrNxrkMTSw', '+989129999999',
+VALUES (-1, E '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8', '+989129999999',
         E 'book.local@gmail.com', '2019-08-05 11:11:06.552000', 0,
         NULL, FALSE, NULL, 'ادمین اصلی');
 
