@@ -1,6 +1,5 @@
 package com.books.utility.config.model.file;
 
-import com.books.utility.config.model.file.s3.S3FileSystemConfig;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +26,6 @@ public class FileCrud implements Diffable<FileCrud> {
     private String tempFileUrl;
     private float imageQuality;
     private List<String> allowedExtensions = new ArrayList<>();
-    private S3FileSystemConfig s3Config;
 
     public FileCrud(FileCrud fileCrud) {
         this.root = fileCrud.getRoot();
@@ -37,7 +35,6 @@ public class FileCrud implements Diffable<FileCrud> {
         this.tempFileUrl = fileCrud.getTempFileUrl();
         this.imageQuality = fileCrud.getImageQuality();
         this.allowedExtensions = fileCrud.getAllowedExtensions();
-        this.s3Config = fileCrud.getS3Config();
     }
 
     @Override
@@ -50,7 +47,6 @@ public class FileCrud implements Diffable<FileCrud> {
                 .append("tempFileUrl", this.tempFileUrl, fileCrud.getTempFileUrl())
                 .append("imageQuality", this.imageQuality, fileCrud.getImageQuality())
                 .append("allowedExtensions", this.allowedExtensions, fileCrud.getAllowedExtensions())
-                .append("s3Config", this.s3Config.diff(fileCrud.getS3Config()))
                 .build();
     }
 }

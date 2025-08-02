@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ApplicationProperties {
-    private boolean initDB;
     private IdentitySettings identitySettings;
     private FileCrud fileCrud;
     private OpenApiConfig openApiConfig;

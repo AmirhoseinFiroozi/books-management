@@ -1,7 +1,7 @@
 package com.books.application.user.user.repository;
 
-import com.books.database.repository.Dao;
 import com.books.application.user.user.entity.UserEntity;
+import com.books.database.repository.Dao;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +21,28 @@ public class BaseUserDao extends Dao<UserEntity> {
         map.put("phoneNumber", phoneNumber);
         List<UserEntity> result = super.queryHql(query, map);
         return result.isEmpty() ? null : result.getFirst();
+    }
+
+    public UserEntity getByUsernameOrPhoneNumber(String username) {
+        Query query = this.getEntityManager().createQuery("SELECT user FROM UserEntity user " +
+                "left join fetch user.roleRealms roleRealms " +
+                "left join fetch roleRealms.role role " +
+                "left join fetch role.permissions " +
+                "where (user.phoneNumber = :username OR user.username = :username) AND user.deleted is null");
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", username);
+        List<UserEntity> result = super.queryHql(query, map);
+        return result.isEmpty() ? null : result.getFirst();
+    }
+
+    public boolean existsByUsernameOrPhoneNumber(String username, String phoneNumber) {
+        Query query = this.getEntityManager().createQuery("SELECT 1 FROM UserEntity user " +
+                "where (user.phoneNumber = :phoneNumber OR user.username = :username) AND user.deleted is null");
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", username);
+        map.put("phoneNumber", phoneNumber);
+        List<Integer> result = super.queryHql(query, map);
+        return !result.isEmpty();
     }
 
     public void updateAccessFailedCount(int id) {

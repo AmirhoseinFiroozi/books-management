@@ -6,6 +6,7 @@ import com.books.security.dto.TokenInfo;
 import com.books.security.repository.RestBaseDao;
 import com.books.security.statics.constants.SecurityConstant;
 import com.books.utility.commons.dto.UserContextDto;
+import com.books.utility.config.model.ApplicationProperties;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
 import io.jsonwebtoken.*;
@@ -45,10 +46,10 @@ public class JwtService {
     private final SecretKey key;
 
     @Autowired
-    public JwtService(RestBaseDao restBaseDao, AvailableService availableService) {
+    public JwtService(RestBaseDao restBaseDao, AvailableService availableService, ApplicationProperties applicationProperties) {
         this.restBaseDao = restBaseDao;
         this.availableService = availableService;
-        this.key = Keys.hmacShaKeyFor("v8y/B?E(H+MbPeShVmYq3t6w9z$C&F)J@NcRfTjWnZr4u7x!A%D*G-KaPdSgVkXp".getBytes(StandardCharsets.UTF_8));
+        this.key = Keys.hmacShaKeyFor(applicationProperties.getIdentitySettings().getJwt().getSecurityKey().getBytes(StandardCharsets.UTF_8));
     }
 
     /* ****************************************************************************************************************** */

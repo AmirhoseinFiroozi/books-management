@@ -10,14 +10,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AccountInfoOut {
     private int id;
-    private String fullName;
+    private String username;
     private String phoneNumber;
     private String email;
     private boolean hasPassword;
 
     public AccountInfoOut(UserEntity userEntity) {
         this.id = userEntity.getId();
-        this.fullName = userEntity.getFullName();
+        this.username = userEntity.getUsername();
         this.phoneNumber = userEntity.getPhoneNumber();
         this.email = userEntity.getEmail();
         this.hasPassword = userEntity.getHashedPassword() != null && !userEntity.getHashedPassword().isEmpty();

@@ -1,8 +1,6 @@
 package com.books.application.user.account.service;
 
-import com.books.application.user.account.dto.LoginIn;
-import com.books.application.user.account.dto.LoginOut;
-import com.books.application.user.account.dto.UserOut;
+import com.books.application.user.account.dto.*;
 import com.books.application.user.session.dto.UserSessionIn;
 import com.books.application.user.session.entity.UserSessionEntity;
 import com.books.application.user.session.service.UserSessionService;
@@ -16,10 +14,12 @@ import com.books.utility.config.model.ApplicationProperties;
 import com.books.utility.support.HashService;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Service
 public class AccountService {
@@ -29,15 +29,17 @@ public class AccountService {
     private final UserSessionService userSessionService;
     private final HashService hashService;
     private final JwtService jwtService;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public AccountService(UserService userService, UserSessionService userSessionService, HashService hashService,
-                          ApplicationProperties applicationProperties, JwtService jwtService) {
+                          ApplicationProperties applicationProperties, JwtService jwtService, ModelMapper modelMapper) {
         this.userService = userService;
         this.userSessionService = userSessionService;
         this.hashService = hashService;
         this.applicationProperties = applicationProperties;
         this.jwtService = jwtService;
+        this.modelMapper = modelMapper;
     }
 
     private LoginOut login(UserEntity userEntity, ClientInfo clientInfo) throws SystemException {
@@ -54,9 +56,9 @@ public class AccountService {
     }
 
     public LoginOut login(LoginIn model, ClientInfo clientInfo) throws SystemException {
-        UserEntity userEntity = userService.getByPhoneNumber(model.getPhoneNumber());
+        UserEntity userEntity = userService.getByUsernameOrPhoneNumber(model.getUsername());
         if (userEntity == null) {
-            throw new SystemException(SystemError.USER_NOT_FOUND, "phoneNumber:" + model.getPhoneNumber(), 3001);
+            throw new SystemException(SystemError.USER_NOT_FOUND, "username:" + model.getUsername(), 3001);
         }
 
         checkUserSuspension(userEntity);
@@ -76,6 +78,39 @@ public class AccountService {
             userService.updateAccessFailedCount(userEntity.getId());
         }
         return login(userEntity, clientInfo);
+    }
+
+    public LoginOut register(UserRegisterIn model, ClientInfo clientInfo) throws SystemException {
+        if (!applicationProperties.getIdentitySettings().getRegistration().isRegisterEnabled()) {
+            throw new SystemException(SystemError.ILLEGAL_REQUEST, "register: " + false, 3010);
+        }
+        if (userService.existsByUsernameOrPhoneNumber(model.getUsername(), model.getPhoneNumber())) {
+            throw new SystemException(SystemError.USERNAME_ALREADY_EXIST, "username: " + model.getUsername() + ", phoneNumber: " + model.getPhoneNumber(), 3001);
+        }
+        UserEntity entity = new UserEntity();
+        modelMapper.map(model, entity);
+        entity.setHashedPassword(hashService.hash(model.getPassword()));
+        userService.createEntity(entity);
+        return login(entity, clientInfo);
+    }
+
+    public void changePassword(int userId, ChangePasswordIn model) throws SystemException {
+        UserEntity entity = userService.getEntityById(userId, null);
+        if (!Objects.equals(hashService.hash(model.getCurrentPassword()), entity.getHashedPassword())) {
+            throw new SystemException(SystemError.USERNAME_PASSWORD_NOT_MATCH, "id: " + userId, 3022);
+        }
+        entity.setHashedPassword(hashService.hash(model.getNewPassword()));
+        userService.updateEntity(entity);
+    }
+
+    public UserOut update(int userId, UserEditIn model) throws SystemException {
+        if (userService.existsByUsernameOrPhoneNumber(model.getUsername(), model.getPhoneNumber())) {
+            throw new SystemException(SystemError.USERNAME_ALREADY_EXIST, "username: " + model.getUsername() + ", phoneNumber: " + model.getPhoneNumber(), 3001);
+        }
+        UserEntity entity = userService.getEntityById(userId, null);
+        modelMapper.map(model, entity);
+        userService.updateEntity(entity);
+        return new UserOut(entity);
     }
 
     public void logout(Integer sessionId) {

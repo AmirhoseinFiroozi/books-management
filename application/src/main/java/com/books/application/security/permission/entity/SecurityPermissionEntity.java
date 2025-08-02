@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "SECURITY_PERMISSION", schema = "map")
+@Table(name = "SECURITY_PERMISSION")
 @Getter
 @Setter
 public class SecurityPermissionEntity {

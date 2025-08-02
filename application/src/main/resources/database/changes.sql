@@ -23,6 +23,9 @@ create unique index users_unique_email_not_deleted_key
 
 create unique index users_unique_phone_number_not_deleted_key
     on users (phone_number) where (deleted IS NULL);
+
+create unique index users_unique_user_name_not_deleted_key
+    on users (user_name) where (deleted IS NULL);
 ------------------------------------------------------------------------------------------------------------------------
 -- Security BookShelves Rest
 -- Id Range 1 - 50

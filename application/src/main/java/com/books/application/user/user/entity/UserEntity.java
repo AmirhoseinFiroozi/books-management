@@ -24,16 +24,16 @@ public class UserEntity {
     @SequenceGenerator(name = "User_Sequence", sequenceName = "USER_SEQ", allocationSize = 1)
     private int id;
 
-    @Column(name = "FULL_NAME", length = 201)
-    private String fullName;
+    @Column(name = "USERNAME", length = 201, nullable = false)
+    private String username;
 
-    @Column(name = "PHONE_NUMBER", length = 20)
+    @Column(name = "PHONE_NUMBER", length = 20, nullable = false)
     private String phoneNumber;
 
     @Column(name = "EMAIL", length = 254)
     private String email;
 
-    @Column(name = "HASHED_PASSWORD", length = 100)
+    @Column(name = "HASHED_PASSWORD", length = 100, nullable = false)
     private String hashedPassword;
 
     @Column(name = "LOCK_EXPIRED")

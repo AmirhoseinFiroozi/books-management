@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SECURITY_REALM", schema = "map")
+@Table(name = "SECURITY_REALM")
 @Getter
 @Setter
 public class SecurityRealmEntity {

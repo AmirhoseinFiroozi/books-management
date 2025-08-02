@@ -1,12 +1,10 @@
 package com.books.application.user.account.controller;
 
-import com.books.application.user.account.dto.LoginIn;
-import com.books.application.user.account.dto.LoginOut;
-import com.books.application.user.account.dto.UserOut;
-import com.books.security.authentication.filter.JwtUser;
-import com.books.security.service.AccessService;
+import com.books.application.user.account.dto.*;
 import com.books.application.user.account.service.AccountService;
 import com.books.application.user.account.statics.AccountRestApi;
+import com.books.security.authentication.filter.JwtUser;
+import com.books.security.service.AccessService;
 import com.books.utility.commons.dto.ClientInfo;
 import com.books.utility.commons.dto.UserContextDto;
 import com.books.utility.system.exception.SystemException;
@@ -43,6 +41,13 @@ public class AccountController {
         return new ResponseEntity<>(accountService.login(model, clientInfo), HttpStatus.OK);
     }
 
+    @Operation(description = "User Registration")
+    @PostMapping(path = {"${rest.public}" + AccountRestApi.REGISTER}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<LoginOut> register(@RequestBody @Valid UserRegisterIn model, BindingResult bindingResult, HttpServletRequest request) throws SystemException {
+        ClientInfo clientInfo = new ClientInfo(request);
+        return new ResponseEntity<>(accountService.register(model, clientInfo), HttpStatus.OK);
+    }
+
     @Operation(description = "Refresh Token")
     @GetMapping(path = {"${rest.public}" + AccountRestApi.REFRESH_TOKEN}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LoginOut> refresh(HttpServletRequest request) throws SystemException {
@@ -65,5 +70,20 @@ public class AccountController {
     public ResponseEntity<UserOut> getUser(HttpServletRequest request) throws SystemException {
         UserContextDto contextDto = JwtUser.getAuthenticatedUser();
         return new ResponseEntity<>(accountService.getUser(contextDto.getId()), HttpStatus.OK);
+    }
+
+    @Operation(description = "Change Password")
+    @PatchMapping(path = {"${rest.identified}" + AccountRestApi.CHANGE_PASSWORD}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void changePassword(@RequestBody @Valid ChangePasswordIn model, BindingResult bindingResult, HttpServletRequest request) throws SystemException {
+        UserContextDto contextDto = JwtUser.getAuthenticatedUser();
+        accountService.changePassword(contextDto.getId(), model);
+    }
+
+    @Operation(description = "Update User")
+    @PutMapping(path = {"${rest.public}" + AccountRestApi.USERS}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserOut> updateUser(@RequestBody @Valid UserEditIn model, BindingResult bindingResult, HttpServletRequest request) throws SystemException {
+        UserContextDto contextDto = JwtUser.getAuthenticatedUser();
+        return new ResponseEntity<>(accountService.update(contextDto.getId(), model), HttpStatus.OK);
     }
 }
