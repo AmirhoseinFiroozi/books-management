@@ -1,17 +1,16 @@
 package com.books.utility.file.service;
 
-import com.books.utility.file.dto.BucketInfo;
-import com.books.utility.file.dto.ContainerInfo;
-import com.books.utility.file.dto.DownloadResult;
-import com.books.utility.file.statics.FileServiceStatus;
 import com.books.utility.commons.annotations.Attachment;
 import com.books.utility.commons.statics.constants.ParameterDictionary;
 import com.books.utility.config.model.ApplicationProperties;
+import com.books.utility.file.dto.BucketInfo;
+import com.books.utility.file.dto.ContainerInfo;
+import com.books.utility.file.dto.DownloadResult;
 import com.books.utility.file.dto.FileInfo;
+import com.books.utility.file.statics.FileServiceStatus;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Hibernate;
@@ -308,23 +307,6 @@ public class FileSystemFileService implements IFileService {
         } else {
             return manipulate(oldFilePath, newFilePath, containerName, bucketName, maximumCount);
         }
-    }
-
-    @Override
-    public void replacementFolder(String root, String sourcePath, String destinationPath, String destinationFile) throws IOException, SystemException {
-        String baseRoot = this.applicationProperties.getFileCrud().getRoot();
-        File sourceFolder = new File(baseRoot + root + sourcePath);
-        File destFolder = new File(baseRoot + root + destinationPath);
-        File oldFolder = new File(baseRoot + root + destinationPath + destinationFile);
-        if (sourceFolder.exists() && destFolder.getParentFile().exists()) {
-            if (oldFolder.exists()) {
-                FileUtils.deleteDirectory(oldFolder);
-            }
-            FileUtils.copyDirectoryToDirectory(sourceFolder, destFolder);
-        } else {
-            throw new SystemException(SystemError.DESTINATION_PATH_NOT_EXISTS, "file not found", 8008);
-        }
-
     }
 
     /**

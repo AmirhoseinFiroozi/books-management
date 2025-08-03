@@ -3,12 +3,11 @@ package com.books.utility.file.service;
 import com.books.utility.file.dto.BucketInfo;
 import com.books.utility.file.dto.ContainerInfo;
 import com.books.utility.file.dto.DownloadResult;
-import com.books.utility.file.statics.FileServiceStatus;
 import com.books.utility.file.dto.FileInfo;
+import com.books.utility.file.statics.FileServiceStatus;
 import com.books.utility.system.exception.SystemException;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.Collection;
 
 public interface IFileService {
@@ -51,7 +50,4 @@ public interface IFileService {
     <T, U> void transfer(T sourceModel, U targetModel, String sourceField, String targetField, String targetCustomParentPath) throws SystemException;
 
     DownloadResult download(String containerName, String bucketName, String fileName) throws SystemException;
-
-    void replacementFolder(String root, String sourcePath, String destinationPath, String destinationFile) throws IOException, SystemException;
-
 }

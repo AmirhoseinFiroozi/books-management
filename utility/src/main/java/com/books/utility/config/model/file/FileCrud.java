@@ -19,8 +19,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class FileCrud implements Diffable<FileCrud> {
-    private String root;
-    private String baseUrl;
     private String baseFilePath;
     private String tempFilePath;
     private String tempFileUrl;
@@ -28,8 +26,6 @@ public class FileCrud implements Diffable<FileCrud> {
     private List<String> allowedExtensions = new ArrayList<>();
 
     public FileCrud(FileCrud fileCrud) {
-        this.root = fileCrud.getRoot();
-        this.baseUrl = fileCrud.getBaseUrl();
         this.baseFilePath = fileCrud.getBaseFilePath();
         this.tempFilePath = fileCrud.getTempFilePath();
         this.tempFileUrl = fileCrud.getTempFileUrl();
@@ -40,8 +36,6 @@ public class FileCrud implements Diffable<FileCrud> {
     @Override
     public DiffResult<FileCrud> diff(FileCrud fileCrud) {
         return new DiffBuilder(this, fileCrud, ToStringStyle.SHORT_PREFIX_STYLE)
-                .append("root", this.root, fileCrud.getRoot())
-                .append("baseUrl", this.baseUrl, fileCrud.getBaseUrl())
                 .append("baseFilePath", this.baseFilePath, fileCrud.getBaseFilePath())
                 .append("tempFilePath", this.tempFilePath, fileCrud.getTempFilePath())
                 .append("tempFileUrl", this.tempFileUrl, fileCrud.getTempFileUrl())

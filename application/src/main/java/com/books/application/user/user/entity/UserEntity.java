@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -46,11 +44,9 @@ public class UserEntity {
     private boolean suspended;
 
     @Column(name = "CREATED", nullable = false)
-    @CreationTimestamp
     private LocalDateTime created;
 
     @Column(name = "LAST_UPDATE")
-    @UpdateTimestamp
     private LocalDateTime lastUpdate;
 
     @Column(name = "DELETED")
@@ -58,4 +54,14 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "userEntity", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<SecurityUserRoleRealmEntity> roleRealms = new HashSet<>();
+
+    @PrePersist
+    public void fillCreated() {
+        this.created = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void fillLastUpdate() {
+        this.lastUpdate = LocalDateTime.now();
+    }
 }

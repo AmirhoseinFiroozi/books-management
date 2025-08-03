@@ -36,4 +36,9 @@ public class UserSessionEntity {
 
     @Column(name = "IP", length = 39, nullable = false)
     private String ip;
+
+    @PrePersist
+    public void fillCreated() {
+        this.created = LocalDateTime.now();
+    }
 }
