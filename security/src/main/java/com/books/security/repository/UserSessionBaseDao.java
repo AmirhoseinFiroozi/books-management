@@ -22,7 +22,7 @@ public class UserSessionBaseDao extends Dao<UserContextDto> {
                 " users.id_pk as \"id\"," +
                 " users.suspended," +
                 " users.lock_expired as \"lockExpired\"," +
-                " users.full_name as \"fullName\"," +
+                " users.username as \"username\"," +
                 " array_to_string(array_agg(distinct security_role_permission.permission_id_fk), ',') as \"permissionIds\"" +
                 " from user_session user_session " +
                 " inner join users users " +
@@ -46,7 +46,7 @@ public class UserSessionBaseDao extends Dao<UserContextDto> {
                 " users.id_pk as \"id\"," +
                 " users.suspended," +
                 " users.lock_expired as \"lockExpired\"," +
-                " users.full_name as \"fullName\"," +
+                " users.username as \"username\"," +
                 " '' as \"permissionIds\"" +
                 " from user_session user_session " +
                 " inner join users users " +

@@ -16,15 +16,15 @@ import java.util.stream.Collectors;
 public class UserContextDto {
     private Integer id;
     private Integer sessionId;
-    private String fullName;
+    private String username;
     private boolean suspended;
     private LocalDateTime lockExpired;
     private Set<Integer> permissionIds;
 
-    public UserContextDto(Integer id, Integer sessionId, String fullName, boolean suspended, Timestamp lockExpired, boolean mobileConfirmed, boolean emailConfirmed, String permissionIds) {
+    public UserContextDto(Integer id, Integer sessionId, String username, boolean suspended, Timestamp lockExpired, boolean mobileConfirmed, boolean emailConfirmed, String permissionIds) {
         this.id = id;
         this.sessionId = sessionId;
-        this.fullName = fullName;
+        this.username = username;
         this.suspended = suspended;
         if (lockExpired != null) {
             this.lockExpired = lockExpired.toLocalDateTime();
