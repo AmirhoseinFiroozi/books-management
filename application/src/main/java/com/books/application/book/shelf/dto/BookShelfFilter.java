@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public class BookShelfFilter implements FilterBase {
     private Integer id;
     private String name;
-    private LocalDateTime createdMin;
-    private LocalDateTime createdMax;
+    private LocalDate createdMin;
+    private LocalDate createdMax;
     @Schema(hidden = true)
     @Setter(AccessLevel.PRIVATE)
     private Integer userId;
