@@ -117,12 +117,12 @@ public class AccountService {
         userSessionService.delete(sessionId);
     }
 
-    public LoginOut refresh(UserContextDto userContextDto, Integer sessionId, String token) throws SystemException {
+    public LoginOut refresh(UserContextDto userContextDto, String token) throws SystemException {
         UserEntity userEntity = userService.getEntityById(userContextDto.getId(), INCLUDE);
 
         checkUserSuspension(userEntity);
 
-        UserSessionEntity userSessionEntity = this.userSessionService.getEntityById(sessionId, null);
+        UserSessionEntity userSessionEntity = this.userSessionService.getEntityById(userContextDto.getSessionId(), null);
         if (userSessionEntity == null) {
             throw new SystemException(SystemError.USER_NOT_LOGIN, "phoneNumber:" + userEntity.getPhoneNumber(), 3005);
         }

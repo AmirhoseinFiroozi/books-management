@@ -51,14 +51,13 @@ public class AccountController {
     @Operation(description = "Refresh Token")
     @GetMapping(path = {"${rest.public}" + AccountRestApi.REFRESH_TOKEN}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LoginOut> refresh(HttpServletRequest request) throws SystemException {
-        int sessionId = accessService.getSessionIdFromRefreshToken(request);
         String token = accessService.getAuthenticatedToken(request);
         UserContextDto userContextDto = accessService.getAuthenticatedUserFromRefreshToken(request);
-        return new ResponseEntity<>(accountService.refresh(userContextDto, sessionId, token), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.refresh(userContextDto, token), HttpStatus.OK);
     }
 
     @Operation(description = "User Logout")
-    @PostMapping(path = {"${rest.public}" + AccountRestApi.LOGOUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = {"${rest.identified}" + AccountRestApi.LOGOUT}, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void logout(HttpServletRequest request) throws SystemException {
         int sessionId = accessService.getSessionIdFromAccessToken(request);
@@ -81,7 +80,7 @@ public class AccountController {
     }
 
     @Operation(description = "Update User")
-    @PutMapping(path = {"${rest.public}" + AccountRestApi.USERS}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = {"${rest.identified}" + AccountRestApi.USERS}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserOut> updateUser(@RequestBody @Valid UserEditIn model, BindingResult bindingResult, HttpServletRequest request) throws SystemException {
         UserContextDto contextDto = JwtUser.getAuthenticatedUser();
         return new ResponseEntity<>(accountService.update(contextDto.getId(), model), HttpStatus.OK);
