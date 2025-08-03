@@ -85,7 +85,7 @@ public class AccountService {
             throw new SystemException(SystemError.ILLEGAL_REQUEST, "register: " + false, 3010);
         }
         if (userService.existsByUsernameOrPhoneNumber(model.getUsername(), model.getPhoneNumber())) {
-            throw new SystemException(SystemError.USERNAME_ALREADY_EXIST, "username: " + model.getUsername() + ", phoneNumber: " + model.getPhoneNumber(), 3001);
+            throw new SystemException(SystemError.USERNAME_ALREADY_EXIST, "username: " + model.getUsername() + " or, phoneNumber: " + model.getPhoneNumber(), 3001);
         }
         UserEntity entity = new UserEntity();
         modelMapper.map(model, entity);

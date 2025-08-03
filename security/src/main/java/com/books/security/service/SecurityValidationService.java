@@ -22,7 +22,7 @@ public class SecurityValidationService {
     public String validateAuthHeaderToken(String value) throws SystemException {
         // 7 characters for "Bearer " and 2 characters for two dots
         if (value == null || value.length() < 10)
-            throw new SystemException(SystemError.INVALID_TOKEN_HEADER, "value", 2101);
+            throw new SystemException(SystemError.INVALID_TOKEN_HEADER, "value:" + value, 2101);
         return value.replaceAll("Bearer ", "");
     }
 

@@ -229,7 +229,7 @@ values ('ms-books-management', 'dev',
           "identitySettings": {
             "jwt": {
               "refreshPath": "/api/pub/account/refresh",
-              "securityKey": "HS512SecretKey150746031@$^523979?nsghdtysadhwsj!1255255@mnsdabsdtggeygegg&&==sdsadbdugd#",
+              "securityKey": "v8y/B?E(H+MbPeShVmYq3t6w9z$C&F)J@NcRfTjWnZr4u7x!A%D*G-KaPdSgVkXp",
               "mobileAccessTokenExpireMin": 2880,
               "browserAccessTokenExpireMin": 2880,
               "mobileRefreshTokenExpireMin": 129600,
