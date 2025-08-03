@@ -25,6 +25,10 @@ public class UserService extends AbstractService<UserEntity, BaseUserDao> {
         return getDao().existsByUsernameOrPhoneNumber(username, phoneNumber);
     }
 
+    public UserEntity getByUsernameOrPhoneNumber(String username, String phoneNumber) {
+        return getDao().getByUsernameOrPhoneNumber(username, phoneNumber);
+    }
+
     public void updateAccessFailedCount(int id) {
         getDao().updateAccessFailedCount(id);
     }

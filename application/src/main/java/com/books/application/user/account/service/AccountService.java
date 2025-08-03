@@ -104,10 +104,11 @@ public class AccountService {
     }
 
     public UserOut update(int userId, UserEditIn model) throws SystemException {
-        if (userService.existsByUsernameOrPhoneNumber(model.getUsername(), model.getPhoneNumber())) {
-            throw new SystemException(SystemError.USERNAME_ALREADY_EXIST, "username: " + model.getUsername() + ", phoneNumber: " + model.getPhoneNumber(), 3001);
-        }
+        UserEntity existUser = userService.getByUsernameOrPhoneNumber(model.getUsername(), model.getPhoneNumber());
         UserEntity entity = userService.getEntityById(userId, null);
+        if (existUser != null && !Objects.equals(existUser.getId(), entity.getId())) {
+            throw new SystemException(SystemError.USERNAME_ALREADY_EXIST, "username: " + model.getUsername() + " or , phoneNumber: " + model.getPhoneNumber(), 3001);
+        }
         modelMapper.map(model, entity);
         userService.updateEntity(entity);
         return new UserOut(entity);

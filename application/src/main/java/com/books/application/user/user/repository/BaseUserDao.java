@@ -45,6 +45,16 @@ public class BaseUserDao extends Dao<UserEntity> {
         return !result.isEmpty();
     }
 
+    public UserEntity getByUsernameOrPhoneNumber(String username, String phoneNumber) {
+        Query query = this.getEntityManager().createQuery("SELECT user FROM UserEntity user " +
+                "where (user.phoneNumber = :phoneNumber OR user.username = :username) AND user.deleted is null");
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", username);
+        map.put("phoneNumber", phoneNumber);
+        List<UserEntity> result = super.queryHql(query, map);
+        return result.isEmpty() ? null : result.getFirst();
+    }
+
     public void updateAccessFailedCount(int id) {
         Query query = this.getEntityManager().createQuery("update UserEntity user " +
                 "set user.accessFailedCount = 0 " +
