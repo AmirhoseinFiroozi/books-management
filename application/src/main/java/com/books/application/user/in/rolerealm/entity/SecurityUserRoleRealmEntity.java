@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SECURITY_USER_ROLE_REALM", schema = "VRP")
+@Table(name = "SECURITY_USER_ROLE_REALM")
 @Getter
 @Setter
 @NoArgsConstructor

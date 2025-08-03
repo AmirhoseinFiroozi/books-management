@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "SECURITY_ROLE", schema = "map")
+@Table(name = "SECURITY_ROLE")
 @Getter
 @Setter
 public class SecurityRoleEntity {
@@ -34,7 +34,7 @@ public class SecurityRoleEntity {
     @Column(name = "type", nullable = false)
     private RoleType type;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "SECURITY_ROLE_PERMISSION", schema = "map", joinColumns = @JoinColumn(name = "ROLE_ID_FK", referencedColumnName = "ID_PK", nullable = false),
+    @JoinTable(name = "SECURITY_ROLE_PERMISSION", joinColumns = @JoinColumn(name = "ROLE_ID_FK", referencedColumnName = "ID_PK", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "PERMISSION_ID_FK", referencedColumnName = "ID_PK", nullable = false))
     private Set<SecurityPermissionEntity> permissions;
 }

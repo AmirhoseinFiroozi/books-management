@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "SECURITY_REST", schema = "map")
+@Table(name = "SECURITY_REST")
 @Getter
 @Setter
 public class SecurityRestEntity {

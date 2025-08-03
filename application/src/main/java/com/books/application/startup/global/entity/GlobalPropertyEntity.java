@@ -18,7 +18,7 @@ import org.hibernate.annotations.Type;
 @Getter
 @Setter
 @Entity
-@Table(name = "GLOBAL_PROPERTY", schema = "VRP")
+@Table(name = "GLOBAL_PROPERTY")
 public class GlobalPropertyEntity {
 
     @EmbeddedId

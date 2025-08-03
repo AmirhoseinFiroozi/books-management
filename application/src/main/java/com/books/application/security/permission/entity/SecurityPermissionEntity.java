@@ -33,7 +33,7 @@ public class SecurityPermissionEntity {
     @Column(name = "type")
     private PermissionType type;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinTable(name = "SECURITY_PERMISSION_REST", schema = "map",
+    @JoinTable(name = "SECURITY_PERMISSION_REST",
             joinColumns = @JoinColumn(name = "PERMISSION_ID_FK", referencedColumnName = "ID_PK", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "REST_ID_FK", referencedColumnName = "ID_PK", nullable = false))
     private Set<SecurityRestEntity> rests;
