@@ -198,6 +198,7 @@ create table book
         constraint fks8hvjofe3ioe1no29q7ull505
             references users,
     created          timestamp(6) not null,
+    file             varchar(255) not null,
     name             varchar(255),
     book_shelf_id_fk integer      not null
         constraint book_book_shelf_id_fk_fkey references book_shelf

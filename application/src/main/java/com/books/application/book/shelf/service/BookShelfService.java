@@ -12,6 +12,7 @@ import com.books.utility.commons.repository.dto.ReportFilter;
 import com.books.utility.commons.repository.dto.ReportOption;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,7 @@ public class BookShelfService extends AbstractService<BookShelfEntity, BookShelf
         this.updateEntity(entity);
     }
 
+    @Transactional
     public void delete(int id, int userId) throws SystemException {
         BookShelfEntity entity = getEntityById(userId, id);
         deleteEntity(entity);

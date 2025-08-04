@@ -30,7 +30,7 @@ public class BookShelfEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID_FK", insertable = false, updatable = false)
     private UserEntity user;
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "bookShelf", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "bookShelf")
     private Set<BookEntity> books;
 
     @PrePersist
