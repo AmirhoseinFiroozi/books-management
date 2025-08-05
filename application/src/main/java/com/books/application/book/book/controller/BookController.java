@@ -88,9 +88,10 @@ public class BookController {
     }
 
     @Operation(description = "update book file")
-    @PutMapping(path = BookRestApi.BOOKS_FILE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = BookRestApi.BOOKS_FILE, produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void updateFile(@PathVariable(name = "id") int id, @RequestBody @Valid @NotNull MultipartFile file,
-                           BindingResult bindingResult, HttpServletRequest httpServletRequest) throws SystemException {
+                           HttpServletRequest httpServletRequest) throws SystemException {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
         bookService.updateFile(id, userContextDto.getId(), file);
     }

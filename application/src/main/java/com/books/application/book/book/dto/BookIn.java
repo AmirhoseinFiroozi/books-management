@@ -19,4 +19,8 @@ public class BookIn {
     private Integer bookShelfId;
     @NotNull
     private MultipartFile file;
+
+    public void setBookShelfId(String bookShelfId) {
+        this.bookShelfId = Integer.valueOf(bookShelfId);
+    }
 }

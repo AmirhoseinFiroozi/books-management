@@ -107,8 +107,8 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         BookEntity entity = getEntityById(userId, id);
         Path staledFilePath = Paths.get(entity.getFile());
         deleteFile(staledFilePath);
-        bookShelfService.deleteEmptyBookShelf(entity.getBookShelfId());
         this.deleteEntity(entity);
+        bookShelfService.deleteEmptyBookShelf(entity.getBookShelfId());
     }
 
     private void deleteFile(Path staledFilePath) throws SystemException {
@@ -124,10 +124,12 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         String fileName = UUID.randomUUID().toString().replace("-", "") + "." + extension;
         File destination = new File(applicationProperties.getFileCrud().getBaseFilePath() + fileName);
 
-        boolean directoryMade = destination.getParentFile().mkdirs();
-        if (!directoryMade) {
-            throw new SystemException(SystemError.DATA_NOT_FOUND, "couldn't create directory: " + destination.getParentFile()
-                    , 100009);
+        File directory = destination.getParentFile();
+        if (!directory.exists()) {
+            if (!destination.getParentFile().mkdir()) {
+                throw new SystemException(SystemError.DATA_NOT_FOUND, "couldn't create directory: " + destination.getParentFile()
+                        , 100009);
+            }
         }
         try {
             file.transferTo(destination);
