@@ -17,7 +17,4 @@ public class SecurityRealmEntity {
     @Basic
     @Column(name = "NAME", length = 100)
     private String name;
-    @Basic
-    @Column(name = "DELETED", nullable = false)
-    private boolean deleted;
 }
