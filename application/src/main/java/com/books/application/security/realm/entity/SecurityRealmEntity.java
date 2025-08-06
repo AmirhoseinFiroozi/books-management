@@ -3,11 +3,13 @@ package com.books.application.security.realm.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Table(name = "SECURITY_REALM")
 @Getter
 @Setter
+@SQLRestriction("deleted is false")
 public class SecurityRealmEntity {
     @Id
     @Column(name = "ID_PK")
@@ -17,7 +19,4 @@ public class SecurityRealmEntity {
     @Basic
     @Column(name = "NAME", length = 100)
     private String name;
-    @Basic
-    @Column(name = "DELETED", nullable = false)
-    private boolean deleted;
 }
