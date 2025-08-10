@@ -20,14 +20,8 @@ public class SecurityRoleEntity {
     @SequenceGenerator(name = "Role_Sequence", sequenceName = "SECURITY_ROLE_SEQ", allocationSize = 1)
     private int id;
     @Basic
-    @Column(name = "CATEGORY")
-    private Integer category;
-    @Basic
     @Column(name = "NAME", length = 50)
     private String name;
-    @Basic
-    @Column(name = "DELETED", nullable = false)
-    private boolean deleted;
     @Basic
     @Column(name = "SHOW", nullable = false, columnDefinition = "boolean default true")
     private boolean show;

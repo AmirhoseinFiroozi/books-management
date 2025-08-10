@@ -17,7 +17,7 @@ public class SecurityUserRoleRealmEntity {
     @Id
     @Column(name = "ID_PK")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserRoleRealm_Sequence")
-    @SequenceGenerator(name = "UserRoleRealm_Sequence", sequenceName = "SECURITY_USER_ROLE_REALM_SEQ", allocationSize = 50)
+    @SequenceGenerator(name = "UserRoleRealm_Sequence", sequenceName = "SECURITY_USER_ROLE_REALM_SEQ", allocationSize = 1)
     private int id;
 
     @Column(name = "ROLE_ID_FK", nullable = false)
@@ -41,7 +41,7 @@ public class SecurityUserRoleRealmEntity {
     @JoinColumn(name = "REALM_ID_FK", referencedColumnName = "ID_PK", insertable = false, updatable = false)
     private SecurityRealmEntity realmEntity;
 
-    public SecurityUserRoleRealmEntity(int roleId, int realmId, int userId, Long companyId) {
+    public SecurityUserRoleRealmEntity(int roleId, int realmId, int userId) {
         this.roleId = roleId;
         this.realmId = realmId;
         this.userId = userId;

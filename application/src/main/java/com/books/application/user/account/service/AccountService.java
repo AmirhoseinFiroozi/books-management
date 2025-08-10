@@ -96,9 +96,6 @@ public class AccountService {
 
     public void changePassword(int userId, ChangePasswordIn model) throws SystemException {
         UserEntity entity = userService.getEntityById(userId, null);
-        if (!Objects.equals(hashService.hash(model.getCurrentPassword()), entity.getHashedPassword())) {
-            throw new SystemException(SystemError.USERNAME_PASSWORD_NOT_MATCH, "id: " + userId, 3022);
-        }
         entity.setHashedPassword(hashService.hash(model.getNewPassword()));
         userService.updateEntity(entity);
     }

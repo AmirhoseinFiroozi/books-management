@@ -22,15 +22,10 @@ import static com.books.utility.support.NormalizeEngine.normalizePersianString;
 @Setter
 @NoArgsConstructor
 public class ChangePasswordIn implements IValidation {
-    private String currentPassword;
     @NotNull
     private String newPassword;
     @NotNull
     private String newPasswordConfirm;
-
-    public void setCurrentPassword(String currentPassword) {
-        this.currentPassword = normalizePersianString(currentPassword);
-    }
 
     public void setNewPassword(String newPassword) {
         this.newPassword = normalizePersianString(newPassword);
@@ -42,10 +37,12 @@ public class ChangePasswordIn implements IValidation {
 
     @Override
     public void validate() throws SystemException {
+        setNewPassword(this.newPassword);
+        setNewPasswordConfirm(this.newPasswordConfirm);
         ApplicationProperties applicationProperties = StaticApplicationContext.getContext().getBean(ApplicationProperties.class);
         List<ErrorResult> errorResults = new ArrayList<>();
 
-        if (StringUtils.isBlank(this.currentPassword) || StringUtils.isBlank(this.newPassword) || StringUtils.isBlank(this.newPasswordConfirm)) {
+        if (StringUtils.isBlank(this.newPassword) || StringUtils.isBlank(this.newPasswordConfirm)) {
             throw new SystemException(SystemError.VALIDATION_EXCEPTION, "passwords shouldn't be null", 3470);
         }
 
