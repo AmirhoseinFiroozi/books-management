@@ -20,6 +20,7 @@
         <module>security</module>
         <module>database</module>
         <module>utility</module>
+        <module>domain</module>
     </modules>
 
     <properties>

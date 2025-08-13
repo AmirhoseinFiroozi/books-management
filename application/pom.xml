@@ -47,7 +47,7 @@
     <dependencies>
         <dependency>
             <groupId>com.books</groupId>
-            <artifactId>security</artifactId>
+            <artifactId>domain</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
