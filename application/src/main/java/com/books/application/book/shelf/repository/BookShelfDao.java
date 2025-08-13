@@ -14,7 +14,7 @@ import java.util.Optional;
 public class BookShelfDao extends Dao<BookShelfEntity> {
     public Optional<BookShelfEntity> getById(int userId, int id) {
         Query query = this.getEntityManager().createQuery("SELECT entity FROM BookShelfEntity entity " +
-                "where entity.id = :id AND entity.userId = :userId");
+                "where entity.id = :id AND entity.user.id = :userId");
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("id", id);
@@ -24,7 +24,7 @@ public class BookShelfDao extends Dao<BookShelfEntity> {
 
     public boolean bookShelfExistsByUserId(int userId, int id) {
         Query query = this.getEntityManager().createQuery("SELECT 1 FROM BookShelfEntity entity " +
-                "where entity.id = :id AND entity.userId = :userId");
+                "where entity.id = :id AND entity.user.id = :userId");
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("id", id);

@@ -14,7 +14,7 @@ import java.util.Optional;
 public class BookDao extends Dao<BookEntity> {
     public Optional<BookEntity> getById(int userId, int id) {
         Query query = this.getEntityManager().createQuery("SELECT entity FROM BookEntity entity " +
-                "where entity.id = :id AND entity.userId = :userId");
+                "where entity.id = :id AND entity.user.id = :userId");
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("id", id);

@@ -6,11 +6,13 @@ import com.books.application.book.book.respository.BookDao;
 import com.books.application.book.shelf.service.BookShelfService;
 import com.books.database.service.AbstractService;
 import com.books.utility.commons.repository.dto.ReportCondition;
+import com.books.utility.commons.repository.dto.ReportCriteriaJoinCondition;
 import com.books.utility.commons.repository.dto.ReportFilter;
 import com.books.utility.commons.repository.dto.ReportOption;
 import com.books.utility.config.model.ApplicationProperties;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.transaction.Transactional;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,6 +161,8 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         reportCondition.addMaxTimeCondition("created", filter.getCreatedMax());
         reportCondition.addEqualCondition("userId", filter.getUserId());
         reportCondition.addEqualCondition("bookShelfId", filter.getBookShelfId());
+        ReportCriteriaJoinCondition joinCondition = new ReportCriteriaJoinCondition("user", JoinType.INNER);
+        reportCondition.addJoinCondition(joinCondition);
 
         return new ReportFilter(reportCondition, reportOption);
     }
