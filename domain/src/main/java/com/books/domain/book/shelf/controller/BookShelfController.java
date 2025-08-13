@@ -55,18 +55,18 @@ public class BookShelfController {
 
     @Operation(description = "create book shelf")
     @PostMapping(path = BookShelfRestApi.BOOK_SHELVES, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void create(@RequestBody @Valid BookShelfIn model, BindingResult bindingResult,
-                       HttpServletRequest httpServletRequest) throws SystemException {
+    public ResponseEntity<BookShelfOut> create(@RequestBody @Valid BookShelfIn model, BindingResult bindingResult,
+                                               HttpServletRequest httpServletRequest) throws SystemException {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
-        bookShelfService.create(userContextDto.getId(), model);
+        return new ResponseEntity<>(bookShelfService.create(userContextDto.getId(), model), HttpStatus.OK);
     }
 
     @Operation(description = "update book shelf")
     @PutMapping(path = BookShelfRestApi.BOOK_SHELVES_ID, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@PathVariable(name = "id") int id, @RequestBody @Valid BookShelfIn model,
-                       BindingResult bindingResult, HttpServletRequest httpServletRequest) throws SystemException {
+    public ResponseEntity<BookShelfOut> update(@PathVariable(name = "id") int id, @RequestBody @Valid BookShelfIn model,
+                                               BindingResult bindingResult, HttpServletRequest httpServletRequest) throws SystemException {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
-        bookShelfService.update(id, userContextDto.getId(), model);
+        return new ResponseEntity<>(bookShelfService.update(id, userContextDto.getId(), model), HttpStatus.OK);
     }
 
     @Operation(description = "delete book shelf")

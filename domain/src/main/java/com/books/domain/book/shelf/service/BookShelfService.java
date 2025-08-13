@@ -14,7 +14,6 @@ import com.books.utility.commons.repository.dto.ReportOption;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
 import jakarta.persistence.criteria.JoinType;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,23 +35,24 @@ public class BookShelfService extends AbstractService<BookShelfEntity, BookShelf
         return this.getAllEntities(filter(pageableFilter), null).stream().map(BookShelfOut::new).toList();
     }
 
-    public void create(int userId, BookShelfIn model) {
+    public BookShelfOut create(int userId, BookShelfIn model) {
         BookShelfEntity entity = new BookShelfEntity();
         entity.setName(model.getName());
         entity.setUserId(userId);
         this.createEntity(entity);
+        return new BookShelfOut(entity);
     }
 
-    public void update(int id, int userId, BookShelfIn model) throws SystemException {
+    public BookShelfOut update(int id, int userId, BookShelfIn model) throws SystemException {
         BookShelfEntity entity = getEntityById(userId, id);
         entity.setName(model.getName());
         this.updateEntity(entity);
+        return new BookShelfOut(entity);
     }
 
-    @Transactional
     public void delete(int id, int userId) throws SystemException {
-        BookShelfEntity entity = getEntityById(userId, id);
-        deleteEntity(entity);
+        getEntityById(userId, id);
+        deleteById(id);
     }
 
     private BookShelfEntity getEntityById(int userId, int id) throws SystemException {

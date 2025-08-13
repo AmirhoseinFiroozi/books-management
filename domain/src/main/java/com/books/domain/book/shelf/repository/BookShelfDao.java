@@ -40,4 +40,26 @@ public class BookShelfDao extends Dao<BookShelfEntity> {
         map.put("id", id);
         super.updateSql(query, map);
     }
+
+    public boolean bookExistsInShelf(int userId, int bookShelfId) {
+        Query query = this.getEntityManager().createQuery("SELECT 1 FROM BookEntity entity " +
+                "where entity.bookShelfId = :bookShelfId AND entity.user.id = :userId");
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("bookShelfId", bookShelfId);
+        List<Integer> result = super.queryHql(query, map, 1);
+        return !result.isEmpty();
+    }
+
+    public void updateOrphanBooks(int userId, int oldBookShelfId, int newBookShelfId) {
+        Query query = this.getEntityManager().createQuery(
+                "UPDATE BookEntity entity " +
+                        "SET entity.bookShelfId = :newBookShelfId " +
+                        "WHERE entity.userId = :userId AND entity.bookShelfId = :oldBookShelfId");
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("oldBookShelfId", oldBookShelfId);
+        map.put("newBookShelfId", newBookShelfId);
+        super.updateHqlQuery(query, map);
+    }
 }
