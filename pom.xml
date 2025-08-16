@@ -21,6 +21,7 @@
         <module>database</module>
         <module>utility</module>
         <module>domain</module>
+        <module>search</module>
     </modules>
 
     <properties>

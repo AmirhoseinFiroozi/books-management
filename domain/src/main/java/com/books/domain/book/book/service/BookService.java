@@ -159,7 +159,6 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         ReportCondition reportCondition = new ReportCondition();
         reportCondition.addEqualCondition("id", filter.getId());
         reportCondition.addEqualCondition("published", filter.getPublished());
-        reportCondition.addLikeCondition("name", filter.getName());
         reportCondition.addMinTimeCondition("created", filter.getCreatedMin());
         reportCondition.addMaxTimeCondition("created", filter.getCreatedMax());
         reportCondition.addEqualCondition("userId", filter.getUserId());

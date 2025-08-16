@@ -12,22 +12,15 @@ import java.time.LocalDateTime;
 @Setter
 public class BookFilter implements FilterBase {
     private Long id;
-    private String name;
     private LocalDateTime createdMin;
     private LocalDateTime createdMax;
     private Boolean published;
     @Schema(hidden = true)
     @Setter(AccessLevel.PRIVATE)
     private Integer userId;
-    @Schema(hidden = true)
-    @Setter(AccessLevel.PRIVATE)
     private Integer bookShelfId;
 
     public void putUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public void putBookShelfId(Integer bookShelfId) {
-        this.bookShelfId = bookShelfId;
     }
 }
