@@ -26,6 +26,8 @@ public class BookEntity {
     private LocalDateTime created;
     @Column(name = "FILE", length = 255, nullable = false)
     private String file;
+    @Column(name = "PUBLISHED", columnDefinition = "boolean default false")
+    private boolean published;
     @Column(name = "USER_ID_FK", nullable = false)
     private int userId;
     @ManyToOne(fetch = FetchType.LAZY)

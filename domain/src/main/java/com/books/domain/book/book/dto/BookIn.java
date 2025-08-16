@@ -18,9 +18,15 @@ public class BookIn {
     @Min(1)
     private Integer bookShelfId;
     @NotNull
+    private Boolean published;
+    @NotNull
     private MultipartFile file;
 
     public void setBookShelfId(String bookShelfId) {
         this.bookShelfId = Integer.valueOf(bookShelfId);
+    }
+
+    public void setPublished(String published) {
+        this.published = Boolean.parseBoolean(published);
     }
 }

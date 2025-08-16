@@ -77,6 +77,7 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         bookShelfService.bookShelfExistsByUserId(userId, model.getBookShelfId());
         BookEntity entity = new BookEntity();
         entity.setName(model.getName());
+        entity.setPublished(model.getPublished());
         entity.setFile(createFile(model.getFile()));
         entity.setUserId(userId);
         entity.setBookShelfId(model.getBookShelfId());
@@ -88,6 +89,7 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         bookShelfService.bookShelfExistsByUserId(userId, model.getBookShelfId());
         BookEntity entity = getEntityById(userId, id);
         entity.setName(model.getName());
+        entity.setPublished(model.getPublished());
         int oldBookShelfId = entity.getBookShelfId();
         entity.setBookShelfId(model.getBookShelfId());
         if (oldBookShelfId != model.getBookShelfId()) {
@@ -156,6 +158,7 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
 
         ReportCondition reportCondition = new ReportCondition();
         reportCondition.addEqualCondition("id", filter.getId());
+        reportCondition.addEqualCondition("published", filter.getPublished());
         reportCondition.addLikeCondition("name", filter.getName());
         reportCondition.addMinTimeCondition("created", filter.getCreatedMin());
         reportCondition.addMaxTimeCondition("created", filter.getCreatedMax());

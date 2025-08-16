@@ -14,6 +14,8 @@ public class BookUpdateIn {
     @NotBlank
     private String name;
     @NotNull
+    private Boolean published;
+    @NotNull
     @Min(1)
     private Integer bookShelfId;
 }

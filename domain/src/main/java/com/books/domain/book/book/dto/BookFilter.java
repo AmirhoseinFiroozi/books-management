@@ -15,6 +15,7 @@ public class BookFilter implements FilterBase {
     private String name;
     private LocalDateTime createdMin;
     private LocalDateTime createdMax;
+    private Boolean published;
     @Schema(hidden = true)
     @Setter(AccessLevel.PRIVATE)
     private Integer userId;
