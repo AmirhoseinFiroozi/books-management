@@ -257,6 +257,18 @@ public class FileSystemFileService implements IFileService {
     }
 
     @Override
+    public void checkExtension(String extension) throws SystemException {
+        if (StringUtils.isBlank(extension)) {
+            throw new SystemException(SystemError.ILLEGAL_ARGUMENT, "invalid file extension", 1224);
+        }
+        if (applicationProperties.getFileCrud().getAllowedExtensions() != null &&
+                !applicationProperties.getFileCrud().getAllowedExtensions().stream().map(String::toLowerCase)
+                        .collect(Collectors.toSet()).contains(extension.toLowerCase())) {
+            throw new SystemException(SystemError.ILLEGAL_ARGUMENT, "file extension not supported", 1223);
+        }
+    }
+
+    @Override
     public Collection<String> upload(Collection<MultipartFile> files) throws SystemException {
         for (MultipartFile multipartFile : files) {
             if (multipartFile == null || applicationProperties.getFileCrud().getTempFilePath() == null)
@@ -266,14 +278,7 @@ public class FileSystemFileService implements IFileService {
                 throw new SystemException(SystemError.UPLOADED_FILE_CORRUPTED, "file", 1203);
 
             String extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
-            if (StringUtils.isBlank(extension)) {
-                throw new SystemException(SystemError.ILLEGAL_ARGUMENT, "invalid file extension", 1224);
-            }
-            if (applicationProperties.getFileCrud().getAllowedExtensions() != null &&
-                    !applicationProperties.getFileCrud().getAllowedExtensions().stream().map(String::toLowerCase)
-                            .collect(Collectors.toSet()).contains(extension.toLowerCase())) {
-                throw new SystemException(SystemError.ILLEGAL_ARGUMENT, "file extension not supported", 1223);
-            }
+            checkExtension(extension);
         }
         List<String> fileNames = new ArrayList<>();
         for (MultipartFile file : files) {

@@ -37,6 +37,8 @@ public interface IFileService {
 
     String uploadImage(MultipartFile file) throws SystemException;
 
+    void checkExtension(String extension) throws SystemException;
+
     Collection<String> upload(Collection<MultipartFile> files) throws SystemException;
 
     String manipulateAttachments(String oldFilePaths, String newFilePaths, String containerName, String bucketName, String customParentPath, int maximumCount) throws SystemException;

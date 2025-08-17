@@ -10,6 +10,7 @@ import com.books.utility.commons.repository.dto.ReportCriteriaJoinCondition;
 import com.books.utility.commons.repository.dto.ReportFilter;
 import com.books.utility.commons.repository.dto.ReportOption;
 import com.books.utility.config.model.ApplicationProperties;
+import com.books.utility.file.service.IFileService;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
 import jakarta.persistence.criteria.JoinType;
@@ -34,12 +35,14 @@ import java.util.UUID;
 public class BookService extends AbstractService<BookEntity, BookDao> {
     private final ApplicationProperties applicationProperties;
     private final BookShelfService bookShelfService;
+    private final IFileService fileService;
 
     @Autowired
-    public BookService(BookDao dao, ApplicationProperties applicationProperties, BookShelfService bookShelfService) {
+    public BookService(BookDao dao, ApplicationProperties applicationProperties, BookShelfService bookShelfService, IFileService fileService) {
         super(dao);
         this.applicationProperties = applicationProperties;
         this.bookShelfService = bookShelfService;
+        this.fileService = fileService;
     }
 
     public int count(BookFilter filter) {
@@ -125,6 +128,7 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
 
     private String createFile(MultipartFile file) throws SystemException {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+        fileService.checkExtension(extension);
         String fileName = UUID.randomUUID().toString().replace("-", "") + "." + extension;
         File destination = new File(applicationProperties.getFileCrud().getBaseFilePath() + fileName);
 
