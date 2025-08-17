@@ -224,7 +224,7 @@ values ('ms-books-management', 'dev',
             "baseFilePath": "/opt/books-management/files/",
             "imageQuality": 0.3,
             "tempFilePath": "/opt/books-management/files/temp/",
-            "allowedExtensions": []
+            "allowedExtensions": ["epub","pdf","mobi","azw3","iba","book"]
           },
           "openApiConfig": {
             "name": "Books Management",
