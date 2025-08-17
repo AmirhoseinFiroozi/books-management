@@ -73,27 +73,30 @@ public class BookController {
     @Operation(description = "create book")
     @PostMapping(path = BookRestApi.BOOKS, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void create(@ModelAttribute @Valid BookIn model, BindingResult bindingResult,
-                       HttpServletRequest httpServletRequest) throws SystemException {
+    public ResponseEntity<BookOut> create(@ModelAttribute @Valid BookIn model, BindingResult bindingResult,
+                                          HttpServletRequest httpServletRequest) throws SystemException {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
-        bookService.create(userContextDto.getId(), model);
+        return new ResponseEntity<>(bookService.create(userContextDto.getId(), model), HttpStatus.OK);
     }
 
     @Operation(description = "update book")
     @PutMapping(path = BookRestApi.BOOKS_ID, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@PathVariable(name = "id") int id, @RequestBody @Valid BookUpdateIn model,
-                       BindingResult bindingResult, HttpServletRequest httpServletRequest) throws SystemException {
+    public ResponseEntity<BookOut> update(@PathVariable(name = "id") int id, @RequestBody @Valid BookUpdateIn model,
+                                          BindingResult bindingResult, HttpServletRequest httpServletRequest) throws SystemException {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
-        bookService.update(id, userContextDto.getId(), model);
+        return new ResponseEntity<>(bookService.update(id, userContextDto.getId(), model), HttpStatus.OK);
     }
 
     @Operation(description = "update book file")
     @PutMapping(path = BookRestApi.BOOKS_FILE, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void updateFile(@PathVariable(name = "id") int id, @RequestBody @Valid @NotNull MultipartFile file,
-                           HttpServletRequest httpServletRequest) throws SystemException {
+    public ResponseEntity<Resource> updateFile(@PathVariable(name = "id") int id, @RequestBody @Valid @NotNull MultipartFile file,
+                                               HttpServletRequest httpServletRequest) throws SystemException {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
-        bookService.updateFile(id, userContextDto.getId(), file);
+        BookFileOut model = bookService.updateFile(id, userContextDto.getId(), file);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(model.getContentType()))
+                .body(model.getResource());
     }
 
     @Operation(description = "delete book")

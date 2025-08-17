@@ -60,7 +60,11 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
 
     public BookFileOut getFile(int userId, int id) throws SystemException {
         BookEntity entity = getEntityById(userId, id);
-        Path path = Paths.get(applicationProperties.getFileCrud().getBaseFilePath() + entity.getFile());
+        return getBookFile(entity);
+    }
+
+    private BookFileOut getBookFile(BookEntity entity) throws SystemException {
+        Path path = Paths.get(entity.getFile());
         try {
             Resource resource = new UrlResource(path.toUri());
             if (resource.exists() && resource.isReadable()) {
@@ -76,7 +80,7 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         throw new SystemException(SystemError.FILE_NOT_FOUND, "file does not exists", 3022);
     }
 
-    public void create(int userId, BookIn model) throws SystemException {
+    public BookOut create(int userId, BookIn model) throws SystemException {
         bookShelfService.bookShelfExistsByUserId(userId, model.getBookShelfId());
         BookEntity entity = new BookEntity();
         entity.setName(model.getName());
@@ -85,10 +89,11 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         entity.setUserId(userId);
         entity.setBookShelfId(model.getBookShelfId());
         this.createEntity(entity);
+        return new BookOut(entity);
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void update(int id, int userId, BookUpdateIn model) throws SystemException {
+    public BookOut update(int id, int userId, BookUpdateIn model) throws SystemException {
         bookShelfService.bookShelfExistsByUserId(userId, model.getBookShelfId());
         BookEntity entity = getEntityById(userId, id);
         entity.setName(model.getName());
@@ -99,14 +104,16 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
             bookShelfService.deleteEmptyBookShelf(oldBookShelfId);
         }
         this.updateEntity(entity);
+        return new BookOut(entity);
     }
 
-    public void updateFile(int id, int userId, MultipartFile file) throws SystemException {
+    public BookFileOut updateFile(int id, int userId, MultipartFile file) throws SystemException {
         BookEntity entity = getEntityById(userId, id);
         Path staledFilePath = Paths.get(entity.getFile());
         entity.setFile(createFile(file));
         deleteFile(staledFilePath);
         this.updateEntity(entity);
+        return getBookFile(entity);
     }
 
     @Transactional(rollbackOn = Exception.class)
