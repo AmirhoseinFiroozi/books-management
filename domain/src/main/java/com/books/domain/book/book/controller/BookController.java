@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -95,6 +96,20 @@ public class BookController {
         UserContextDto userContextDto = JwtUser.getAuthenticatedUser();
         BookFileOut model = bookService.updateFile(id, userContextDto.getId(), file);
         return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(model.getContentType()))
+                .body(model.getResource());
+    }
+
+    @Operation(description = "download book's file")
+    @GetMapping(BookRestApi.BOOKS_DOWNLOAD)
+    public ResponseEntity<Resource> downloadBookFile(@PathVariable(name = "id") int id, HttpServletRequest request) throws SystemException {
+        UserContextDto contextDto = JwtUser.getAuthenticatedUser();
+        BookDownloadOut model = bookService.downloadBookFile(contextDto.getId(), id);
+        if (model.getResource() == null) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, model.getContentDisposition())
                 .contentType(MediaType.parseMediaType(model.getContentType()))
                 .body(model.getResource());
     }

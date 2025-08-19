@@ -41,7 +41,8 @@ VALUES (51, '/member/books/count(([\?].*)?)', 'GET'),
        (55, '/member/books', 'POST'),
        (56, '/member/books/(-)?[0-9]+', 'PUT'),
        (57, '/member/books/(-)?[0-9]+/file', 'PUT'),
-       (58, '/member/books/(-)?[0-9]+', 'DELETE');
+       (58, '/member/books/(-)?[0-9]+', 'DELETE'),
+       (59, '/member/books/(-)?[0-9]+/download', 'GET');
 
 -- Security Books Permission
 -- Id Range 50 - 100
@@ -60,4 +61,5 @@ VALUES (51, 51),
        (52, 55),
        (52, 56),
        (52, 57),
-       (52, 58);
+       (52, 58),
+       (51, 59);

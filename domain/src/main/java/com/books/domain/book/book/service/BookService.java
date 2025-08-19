@@ -17,8 +17,10 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.transaction.Transactional;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.ContentDisposition;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -152,6 +154,27 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
             throw new SystemException(SystemError.DATA_NOT_FOUND, "couldn't transfer the file", 100008);
         }
         return destination.getAbsolutePath();
+    }
+
+    public BookDownloadOut downloadBookFile(int userId, int id) throws SystemException {
+        BookEntity entity = getEntityById(userId, id);
+        Path path = Paths.get(entity.getFile());
+        try {
+            Resource resource = new FileSystemResource(path);
+            if (resource.exists() && resource.isReadable()) {
+                String contentType = Files.probeContentType(path);
+                if (contentType == null) {
+                    contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
+                }
+                ContentDisposition contentDisposition = ContentDisposition
+                        .attachment()
+                        .filename(entity.getName()).build();
+
+                return new BookDownloadOut(contentDisposition.toString(), contentType, resource);
+            }
+        } catch (Exception ignored) {
+        }
+        return new BookDownloadOut();
     }
 
     private BookEntity getEntityById(int userId, int id) throws SystemException {
