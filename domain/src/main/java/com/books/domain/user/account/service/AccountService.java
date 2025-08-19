@@ -1,6 +1,8 @@
 package com.books.domain.user.account.service;
 
 import com.books.domain.user.account.dto.*;
+import com.books.domain.user.in.rolerealm.entity.SecurityUserRoleRealmEntity;
+import com.books.domain.user.in.rolerealm.service.UserRoleRealmService;
 import com.books.domain.user.session.dto.UserSessionIn;
 import com.books.domain.user.session.entity.UserSessionEntity;
 import com.books.domain.user.session.service.UserSessionService;
@@ -14,6 +16,7 @@ import com.books.utility.config.model.ApplicationProperties;
 import com.books.utility.support.HashService;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,8 @@ import java.util.Objects;
 
 @Service
 public class AccountService {
+    private static final int MEMBER_ROLE = -3;
+    private static final int DEFAULT_REALM = -1;
     private final String[] INCLUDE = {"companies"};
     private final ApplicationProperties applicationProperties;
     private final UserService userService;
@@ -30,16 +35,19 @@ public class AccountService {
     private final HashService hashService;
     private final JwtService jwtService;
     private final ModelMapper modelMapper;
+    private final UserRoleRealmService userRoleRealmService;
 
     @Autowired
     public AccountService(UserService userService, UserSessionService userSessionService, HashService hashService,
-                          ApplicationProperties applicationProperties, JwtService jwtService, ModelMapper modelMapper) {
+                          ApplicationProperties applicationProperties, JwtService jwtService, ModelMapper modelMapper,
+                          UserRoleRealmService userRoleRealmService) {
         this.userService = userService;
         this.userSessionService = userSessionService;
         this.hashService = hashService;
         this.applicationProperties = applicationProperties;
         this.jwtService = jwtService;
         this.modelMapper = modelMapper;
+        this.userRoleRealmService = userRoleRealmService;
     }
 
     private LoginOut login(UserEntity userEntity, ClientInfo clientInfo) throws SystemException {
@@ -80,6 +88,7 @@ public class AccountService {
         return login(userEntity, clientInfo);
     }
 
+    @Transactional(rollbackOn = Exception.class)
     public LoginOut register(UserRegisterIn model, ClientInfo clientInfo) throws SystemException {
         if (!applicationProperties.getIdentitySettings().getRegistration().isRegisterEnabled()) {
             throw new SystemException(SystemError.ILLEGAL_REQUEST, "register: " + false, 3010);
@@ -91,7 +100,14 @@ public class AccountService {
         modelMapper.map(model, entity);
         entity.setHashedPassword(hashService.hash(model.getPassword()));
         userService.createEntity(entity);
+        createMemberRoleForUser(entity.getId());
         return login(entity, clientInfo);
+    }
+
+    private void createMemberRoleForUser(int userId) {
+        SecurityUserRoleRealmEntity userRoleRealmEntity = new SecurityUserRoleRealmEntity(MEMBER_ROLE, DEFAULT_REALM,
+                userId);
+        userRoleRealmService.createEntity(userRoleRealmEntity);
     }
 
     public void changePassword(int userId, ChangePasswordIn model) throws SystemException {

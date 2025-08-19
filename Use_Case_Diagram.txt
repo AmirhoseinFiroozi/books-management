@@ -227,7 +227,7 @@ BOOKS MANAGEMENT SYSTEM - USE CASE DIAGRAM
 │    - Description: Create a new user account with username, phone, email, and    │
 │      password                                                                   │
 │    - Preconditions: User is not authenticated                                   │
-│    - Postconditions: New user account created, user can login                   │
+│    - Postconditions: New user account created with role member, user can login  │
 │                                                                                 │
 │ 2. LOGIN                                                                        │
 │    - Actor: Guest                                                               │

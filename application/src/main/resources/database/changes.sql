@@ -101,8 +101,6 @@ alter table security_permission_rest
 ------------------------------------------------------------------------------------------------------------------------
 create table security_role
 (
-    category integer,
-    deleted  boolean              not null,
     id_pk    integer              not null
         primary key,
     show     boolean default true not null,
@@ -437,7 +435,7 @@ VALUES (10151, 10151),
 
 DELETE
 FROM SECURITY_ROLE_PERMISSION
-WHERE ROLE_ID_FK = -1;
+WHERE ROLE_ID_FK IN (-1, -2, -3);
 
 INSERT INTO SECURITY_ROLE_PERMISSION (ROLE_ID_FK, PERMISSION_ID_FK)
 SELECT -1, PERMISSION.ID_PK
@@ -445,6 +443,14 @@ FROM SECURITY_PERMISSION PERMISSION
 WHERE PERMISSION.NODE_TYPE NOT IN (1, 5)
   AND PERMISSION.TYPE IN ('ADMIN', 'MEMBER');
 
-ALTER TABLE security_role
-    DROP COLUMN category,
-    DROP COLUMN deleted;
+INSERT INTO SECURITY_ROLE_PERMISSION (ROLE_ID_FK, PERMISSION_ID_FK)
+SELECT -2, PERMISSION.ID_PK
+FROM SECURITY_PERMISSION PERMISSION
+WHERE PERMISSION.NODE_TYPE NOT IN (1, 5)
+  AND PERMISSION.TYPE IN ('ADMIN');
+
+INSERT INTO SECURITY_ROLE_PERMISSION (ROLE_ID_FK, PERMISSION_ID_FK)
+SELECT -3, PERMISSION.ID_PK
+FROM SECURITY_PERMISSION PERMISSION
+WHERE PERMISSION.NODE_TYPE NOT IN (1, 5)
+  AND PERMISSION.TYPE IN ('MEMBER');

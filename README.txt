@@ -27,8 +27,14 @@ books-management/
 ├── application/          # Main application module
 │   ├── src/main/java/   # Application configuration and startup
 │   └── src/main/resources/ # Application properties and SQL scripts
+│       ├── database/    # Database schema and migration scripts
+│       └── security/    # Security initialization scripts
 ├── domain/              # Core business logic module
 │   ├── user/           # User management entities and services
+│   │   ├── account/    # Account management services
+│   │   ├── user/       # User entity and CRUD operations
+│   │   ├── session/    # Session management
+│   │   └── in/rolerealm/ # User-role-realm relationships
 │   ├── book/           # Book and bookshelf entities
 │   └── security/       # Security domain entities
 ├── security/           # Authentication and authorization module
@@ -42,9 +48,12 @@ CORE FEATURES
 -------------
 1. User Management
    - User registration and authentication
-   - Role-based access control
-   - Session management
-   - Account lockout protection
+   - Role-based access control (Super Admin, Admin, Member)
+   - Session management and tracking
+   - Account lockout protection after failed attempts
+   - Automatic role assignment (MEMBER role for new users)
+   - Password change functionality
+   - User profile management
 
 2. Book Management
    - Upload and store books in various formats (PDF, EPUB, MOBI, etc.)
@@ -85,9 +94,12 @@ The application includes Swagger/OpenAPI documentation available at:
 MAIN ENDPOINTS
 --------------
 Public Endpoints:
-- POST /api/pub/account/register - User registration
+- POST /api/pub/account/register - User registration (auto-assigns MEMBER role)
 - POST /api/pub/account/login - User authentication
 - POST /api/pub/account/refresh - Token refresh
+- POST /api/pub/account/logout - User logout
+- PUT /api/pub/account/password - Change password
+- PUT /api/pub/account/profile - Update user profile
 
 Member Endpoints:
 - GET /api/member/book-shelves - List bookshelves
@@ -122,10 +134,14 @@ Key configuration properties:
 SECURITY CONFIGURATION
 ---------------------
 - JWT tokens for stateless authentication
-- Role-based access control (RBAC)
-- Permission-based authorization
-- Account lockout after failed attempts
+- Role-based access control (RBAC) with three-tier system:
+  * Super Admin: Full system access
+  * Admin: User management capabilities
+  * Member: Book management capabilities
+- Permission-based authorization with hierarchical structure
+- Account lockout after failed attempts (configurable threshold)
 - Secure file access controls
+- Session tracking with IP, OS, and user agent information
 
 FILE MANAGEMENT
 --------------
@@ -153,7 +169,8 @@ SETUP AND INSTALLATION
 2. Database Setup:
    - Create PostgreSQL database: books_management
    - Run SQL scripts from application/src/main/resources/database/
-   - Initialize with default admin user
+   - Run security initialization scripts from application/src/main/resources/security/
+   - Initialize with default super admin user and role definitions
 
 3. Application Configuration:
    - Update application-dev.properties with database credentials
@@ -170,12 +187,20 @@ SETUP AND INSTALLATION
    - Application: http://localhost:8087/api
    - Swagger UI: http://localhost:8087/api/swagger-ui/
 
-DEFAULT ADMIN ACCOUNT
---------------------
+DEFAULT ACCOUNTS
+----------------
+Super Admin Account:
 - Username: ادمین اصلی
 - Phone: +989129999999
 - Email: book.local@gmail.com
 - Password: (pre-configured hashed password)
+- Role: Super Admin (full system access)
+
+Default Roles:
+- ADMIN (-2): Administrative users with user management capabilities
+- MEMBER (-3): Regular users with book management capabilities
+
+Note: New users are automatically assigned the MEMBER role upon registration
 
 DEVELOPMENT GUIDELINES
 ---------------------
@@ -238,12 +263,3 @@ VERSION INFORMATION
 - Spring Boot: 3.3.0
 - Java: 21
 - Database: PostgreSQL
-- Last Updated: [Current Date]
-
-LICENSE
--------
-[Add appropriate license information]
-
-CONTACT
--------
-[Add contact information for project maintainers] 
