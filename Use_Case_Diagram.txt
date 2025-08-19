@@ -1,0 +1,255 @@
+BOOKS MANAGEMENT SYSTEM - USE CASE DIAGRAM
+==========================================
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                    ACTORS                                       │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐       │
+│  │   GUEST     │    │   MEMBER    │    │    ADMIN    │    │   SYSTEM    │       │
+│  │             │    │             │    │             │    │             │       │
+│  │ (Unauthenti-│    │ (Authentica-│    │ (System     │    │ (Background │       │
+│  │  cated User)│    │  ted User)  │    │  Admin)     │    │  Processes) │       │
+│  └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘       │
+│                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                 USE CASES                                       │
+├─────────────────────────────────────────────────────────────────────────────────┤
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              AUTHENTICATION                                     │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌─────────────┐                                                                │
+│  │   GUEST     │                                                                │
+│  └─────┬───────┘                                                                │
+│        │                                                                        │
+│        ├──► Register Account                                                    │
+│        │    (Create new user account)                                           │
+│        │                                                                        │
+│        ├──► Login                                                               │
+│        │    (Authenticate with username/phone + password)                       │
+│        │                                                                        │
+│        ├──► Refresh Token                                                       │
+│        │    (Renew access token using refresh token)                            │
+│        │                                                                        │
+│        └──► View API Documentation                                              │
+│             (Access Swagger UI documentation)                                   │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              BOOK MANAGEMENT                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌─────────────┐                                                                │
+│  │   MEMBER    │                                                                │
+│  └─────┬───────┘                                                                │
+│        │                                                                        │
+│        ├──► Manage Bookshelves                                                  │
+│        │    ├──► Create Bookshelf                                               │
+│        │    ├──► View Bookshelves                                               │
+│        │    ├──► Update Bookshelf                                               │
+│        │    └──► Delete Bookshelf                                               │
+│        │                                                                        │
+│        ├──► Manage Books                                                        │
+│        │    ├──► Upload Book                                                    │
+│        │    │    (Upload book file: PDF, EPUB, MOBI, etc.)                      │
+│        │    ├──► View Books                                                     │
+│        │    │    (List all books with filtering/pagination)                     │
+│        │    ├──► View Book Details                                              │
+│        │    │    (Get specific book information)                                │
+│        │    ├──► Update Book                                                    │
+│        │    │    (Modify book metadata)                                         │
+│        │    ├──► Update Book File                                               │
+│        │    │    (Replace book file)                                            │
+│        │    ├──► Download Book                                                  │
+│        │    │    (Download book file)                                           │
+│        │    ├──► Delete Book                                                    │
+│        │    └──► Publish/Unpublish Book                                         │
+│        │                                                                        │
+│        └──► Search Books                                                        │
+│             (Search through personal book collection)                           │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              USER MANAGEMENT                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌─────────────┐                                                                │
+│  │    ADMIN    │                                                                │
+│  └─────┬───────┘                                                                │
+│        │                                                                        │
+│        ├──► Manage Users                                                        │
+│        │    ├──► View Users                                                     │
+│        │    │    (List all users with filtering/pagination)                     │
+│        │    ├──► View User Details                                              │
+│        │    │    (Get specific user information)                                │
+│        │    ├──► Update User                                                    │
+│        │    │    (Modify user information)                                      │
+│        │    ├──► Assign Roles                                                   │
+│        │    │    (Assign roles to users)                                        │
+│        │    ├──► Suspend User                                                   │
+│        │    │    (Temporarily disable user account)                             │
+│        │    └──► Delete User                                                    │
+│        │         (Permanently remove user account)                              │
+│        │                                                                        │
+│        ├──► Manage Roles                                                        │
+│        │    ├──► Create Role                                                    │
+│        │    ├──► View Roles                                                     │
+│        │    ├──► Update Role                                                    │
+│        │    └──► Delete Role                                                    │
+│        │                                                                        │
+│        ├──► Manage Permissions                                                  │
+│        │    ├──► View Permissions                                               │
+│        │    │    (List all permissions in hierarchy)                            │
+│        │    └──► Assign Permissions to Roles                                    │
+│        │                                                                        │
+│        └──► Manage Realms                                                       │
+│             ├──► Create Realm                                                   │
+│             ├──► View Realms                                                    │
+│             ├──► Update Realm                                                   │
+│             └──► Delete Realm                                                   │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              SYSTEM PROCESSES                                   │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌─────────────┐                                                                │
+│  │   SYSTEM    │                                                                │
+│  └─────┬───────┘                                                                │
+│        │                                                                        │
+│        ├──► Session Management                                                  │
+│        │    ├──► Create User Session                                            │
+│        │    ├──► Track Session Activity                                         │
+│        │    └──► Cleanup Expired Sessions                                       │
+│        │                                                                        │
+│        ├──► Security Management                                                 │
+│        │    ├──► JWT Token Validation                                           │
+│        │    ├──► Permission Checking                                            │
+│        │    ├──► Account Lockout                                                │
+│        │    │    (Lock account after failed login attempts)                     │
+│        │    └──► Access Control                                                 │
+│        │                                                                        │
+│        ├──► File Management                                                     │
+│        │    ├──► File Upload Processing                                         │
+│        │    ├──► File Storage Management                                        │
+│        │    ├──► File Validation                                                │
+│        │    │    (Check file format and size)                                   │
+│        │    └──► File Cleanup                                                   │
+│        │                                                                        │
+│        ├──► Configuration Management                                            │
+│        │    ├──► Load Application Properties                                    │
+│        │    ├──► Update Configuration                                           │
+│        │    └──► Configuration Refresh                                          │
+│        │                                                                        │
+│        └──► Audit and Logging                                                   │
+│             ├──► Log User Activities                                            │
+│             ├──► Log Security Events                                            │
+│             └──► Generate Audit Reports                                         │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              INCLUDE RELATIONSHIPS                              │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│ • "Login" includes "Validate Credentials"                                       │
+│ • "Upload Book" includes "Validate File Format"                                 │
+│ • "Upload Book" includes "Store File"                                           │
+│ • "Download Book" includes "Check File Access"                                  │
+│ • "Assign Roles" includes "Validate Role Exists"                                │
+│ • "Create Bookshelf" includes "Validate User Permissions"                       │
+│ • "Delete Book" includes "Remove File"                                          │
+│ • "Update User" includes "Validate Unique Constraints"                          │
+│ • "Register Account" includes "Send Welcome Email"                              │
+│ • "Suspend User" includes "Log Security Event"                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              EXTEND RELATIONSHIPS                               │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│ • "Login" extends "Handle Failed Authentication"                                │
+│ • "Upload Book" extends "Handle File Size Exceeded"                             │
+│ • "Upload Book" extends "Handle Invalid File Format"                            │
+│ • "Delete User" extends "Handle User Has Books"                                 │
+│ • "Delete Bookshelf" extends "Handle Bookshelf Has Books"                       │
+│ • "Download Book" extends "Handle File Not Found"                               │
+│ • "Update User" extends "Handle Duplicate Username/Email"                       │
+│ • "Assign Roles" extends "Handle Role Already Assigned"                         │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              GENERALIZATION                                     │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│ • "MEMBER" is a generalization of "GUEST"                                       │
+│ • "ADMIN" is a generalization of "MEMBER"                                       │
+│ • "View Books" is a generalization of "Search Books"                            │
+│ • "Manage Books" is a generalization of "Upload Book"                           │
+│ • "Manage Users" is a generalization of "View Users"                            │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              SYSTEM BOUNDARIES                                  │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│ ┌─────────────────────────────────────────────────────────────────────────────┐ │
+│ │                        BOOKS MANAGEMENT SYSTEM                              │ │
+│ │                                                                             │ │
+│ │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐   │ │
+│ │  │   GUEST     │    │   MEMBER    │    │    ADMIN    │    │   SYSTEM    │   │ │
+│ │  └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘   │ │
+│ │                                                                             │ │
+│ │  ┌─────────────────────────────────────────────────────────────────────────┐│ │
+│ │  │                           USE CASES                                     ││ │
+│ │  │                                                                         ││ │
+│ │  │  Authentication  │  Book Management  │  User Management  │  System     │ │ │
+│ │  │                  │                   │                   │  Processes  │ │ │
+│ │  │  • Register      │  • Manage Books   │  • Manage Users   │  • Session  │ │ │
+│ │  │  • Login         │  • Manage Shelves │  • Manage Roles   │  • Security │ │ │
+│ │  │  • Refresh Token │  • Search Books   │  • Manage Perm.   │  • Files    │ │ │
+│ │  │  • View Docs     │  • Download Books │  • Manage Realms  │  • Config   │ │ │
+│ │  │                  │                   │                   │  • Audit    │ │ │
+│ │  └─────────────────────────────────────────────────────────────────────────┘│ │
+│ │                                                                             │ │
+│ └─────────────────────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              USE CASE DESCRIPTIONS                              │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│ 1. REGISTER ACCOUNT                                                             │
+│    - Actor: Guest                                                               │
+│    - Description: Create a new user account with username, phone, email, and    │
+│      password                                                                   │
+│    - Preconditions: User is not authenticated                                   │
+│    - Postconditions: New user account created, user can login                   │
+│                                                                                 │
+│ 2. LOGIN                                                                        │
+│    - Actor: Guest                                                               │
+│    - Description: Authenticate user with username/phone and password            │
+│    - Preconditions: User has valid account                                      │
+│    - Postconditions: User receives JWT tokens, session created                  │
+│                                                                                 │
+│ 3. UPLOAD BOOK                                                                  │
+│    - Actor: Member                                                              │
+│    - Description: Upload a book file to a specific bookshelf                    │
+│    - Preconditions: User is authenticated, bookshelf exists                     │
+│    - Postconditions: Book file stored, metadata saved to database               │
+│                                                                                 │
+│ 4. MANAGE USERS                                                                 │
+│    - Actor: Admin                                                               │
+│    - Description: Perform CRUD operations on user accounts                      │
+│    - Preconditions: User has admin privileges                                   │
+│    - Postconditions: User accounts modified according to admin actions          │
+│                                                                                 │
+│ 5. SESSION MANAGEMENT                                                           │
+│    - Actor: System                                                              │
+│    - Description: Handle user session lifecycle and tracking                    │
+│    - Preconditions: User authentication successful                              │
+│    - Postconditions: Session data maintained and cleaned up appropriately       │
+└─────────────────────────────────────────────────────────────────────────────────┘ 
