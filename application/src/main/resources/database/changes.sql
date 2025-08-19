@@ -203,7 +203,7 @@ create table book
     created          timestamp(6) not null,
     file             varchar(255) not null,
     published        boolean default false,
-    name             varchar(255),
+    name             varchar(255) not null,
     book_shelf_id_fk integer      not null
         constraint book_book_shelf_id_fk_fkey references book_shelf
 );

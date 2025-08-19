@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -49,14 +50,15 @@ public class BookSearchController {
         return new ResponseEntity<>(searchService.search(clause, pageableFilter), HttpStatus.OK);
     }
 
-    @Operation(description = "fetch book's file")
+    @Operation(description = "download book's file")
     @GetMapping(BookSearchRestApi.BOOKS_ID)
-    public ResponseEntity<Resource> fetchBookFile(@PathVariable(name = "id") int id, HttpServletRequest request) throws SystemException {
-        BookSearchFileOut model = searchService.fetchBookFile(id);
+    public ResponseEntity<Resource> downloadBookFile(@PathVariable(name = "id") int id, HttpServletRequest request) throws SystemException {
+        BookSearchFileOut model = searchService.downloadBookFile(id);
         if (model.getResource() == null) {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, model.getContentDisposition())
                 .contentType(MediaType.parseMediaType(model.getContentType()))
                 .body(model.getResource());
     }

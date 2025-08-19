@@ -11,6 +11,7 @@ import org.springframework.core.io.Resource;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookSearchFileOut {
+    private String contentDisposition;
     private String contentType;
     private Resource resource;
 }

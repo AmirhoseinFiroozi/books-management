@@ -20,7 +20,7 @@ public class BookEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Book_Sequence")
     @SequenceGenerator(name = "Book_Sequence", sequenceName = "BOOK_SEQ", allocationSize = 1)
     private int id;
-    @Column(name = "NAME", length = 255)
+    @Column(name = "NAME", length = 255, nullable = false)
     private String name;
     @Column(name = "CREATED", nullable = false)
     private LocalDateTime created;

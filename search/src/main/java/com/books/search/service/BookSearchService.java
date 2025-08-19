@@ -11,8 +11,9 @@ import com.books.utility.commons.repository.dto.ReportOption;
 import com.books.utility.config.model.ApplicationProperties;
 import com.books.utility.system.exception.SystemError;
 import com.books.utility.system.exception.SystemException;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
+import org.springframework.http.ContentDisposition;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
@@ -55,20 +56,24 @@ public class BookSearchService {
         return bookService.countEntity(new ReportFilter(reportCondition, new ReportOption()));
     }
 
-    public BookSearchFileOut fetchBookFile(int id) throws SystemException {
+    public BookSearchFileOut downloadBookFile(int id) throws SystemException {
         BookEntity entity = bookService.getEntityById(id, null);
         if (!entity.isPublished()) {
             throw new SystemException(SystemError.DATA_NOT_FOUND, "book doesn't exists", 100042);
         }
-        Path path = Paths.get(applicationProperties.getFileCrud().getBaseFilePath() + entity.getFile());
+        Path path = Paths.get(entity.getFile());
         try {
-            Resource resource = new UrlResource(path.toUri());
+            Resource resource = new FileSystemResource(path);
             if (resource.exists() && resource.isReadable()) {
                 String contentType = Files.probeContentType(path);
                 if (contentType == null) {
                     contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
                 }
-                return new BookSearchFileOut(contentType, resource);
+                ContentDisposition contentDisposition = ContentDisposition
+                        .attachment()
+                        .filename(entity.getName()).build();
+
+                return new BookSearchFileOut(contentDisposition.toString(), contentType, resource);
             }
         } catch (Exception ignored) {
         }
