@@ -1,0 +1,231 @@
+BOOKS MANAGEMENT SYSTEM - ENTITY RELATIONSHIP DIAGRAM (ERD)
+============================================================
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                    USERS                                        │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│     username (VARCHAR(201)) - Unique, Not Null                                  │
+│     phone_number (VARCHAR(20)) - Unique, Not Null                               |
+│     email (VARCHAR(254)) - Unique, Nullable                                     │
+│     hashed_password (VARCHAR(100)) - Not Null                                   │
+│     lock_expired (TIMESTAMP(6)) - Nullable                                      │
+│     access_failed_count (INTEGER) - Not Null, Default 0                         |
+│     suspended (BOOLEAN) - Not Null, Default FALSE                               |
+│     created (TIMESTAMP(6)) - Not Null                                           │
+│     last_update (TIMESTAMP(6)) - Nullable                                       │
+│     deleted (TIMESTAMP(6)) - Soft Delete                                        │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ 1:N
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                 USER_SESSION                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│ FK: user_id_fk (INTEGER) → USERS.id_pk                                          │
+│     created (TIMESTAMP(6)) - Not Null                                           │
+│     ip (VARCHAR(39)) - Not Null                                                 │
+│     os (VARCHAR(50)) - Not Null                                                 │
+│     agent (VARCHAR(400)) - Not Null                                             │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                    USERS                                        │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│     username (VARCHAR(201)) - Unique, Not Null                                  │
+│     phone_number (VARCHAR(20)) - Unique, Not Null                               |
+│     email (VARCHAR(254)) - Unique, Nullable                                     │
+│     hashed_password (VARCHAR(100)) - Not Null                                   │
+│     lock_expired (TIMESTAMP(6)) - Nullable                                      │
+│     access_failed_count (INTEGER) - Not Null, Default 0                         |
+│     suspended (BOOLEAN) - Not Null, Default FALSE                               |
+│     created (TIMESTAMP(6)) - Not Null                                           │
+│     last_update (TIMESTAMP(6)) - Nullable                                       │
+│     deleted (TIMESTAMP(6)) - Soft Delete                                        │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ 1:N
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                 BOOK_SHELF                                      │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│ FK: user_id_fk (INTEGER) → USERS.id_pk                                          │
+│     name (VARCHAR(255)) - Nullable                                              │
+│     created (TIMESTAMP(6)) - Not Null                                           │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ 1:N
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                    BOOK                                         │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│ FK: user_id_fk (INTEGER) → USERS.id_pk                                          │
+│ FK: book_shelf_id_fk (INTEGER) → BOOK_SHELF.id_pk                               │
+│     name (VARCHAR(255)) - Not Null                                              │
+│     file (VARCHAR(255)) - Not Null (File Path)                                  │
+│     published (BOOLEAN) - Default FALSE                                         │
+│     created (TIMESTAMP(6)) - Not Null                                           │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                SECURITY_REALM                                   │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│     name (VARCHAR(100)) - Nullable                                              │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ 1:N
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                            SECURITY_USER_ROLE_REALM                             |
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│ FK: user_id_fk (INTEGER) → USERS.id_pk                                          │
+│ FK: role_id_fk (INTEGER) → SECURITY_ROLE.id_pk                                  │
+│ FK: realm_id_fk (INTEGER) → SECURITY_REALM.id_pk                                |
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ N:1
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                               SECURITY_ROLE                                     │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│     name (VARCHAR(50)) - Nullable                                               │
+│     show (BOOLEAN) - Default TRUE                                               │
+│     type (SMALLINT) - Check (0-1)                                               │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ 1:N
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                          SECURITY_ROLE_PERMISSION                               |
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: (permission_id_fk, role_id_fk) - Composite Primary Key                      │
+│ FK: role_id_fk (INTEGER) → SECURITY_ROLE.id_pk                                  │
+│ FK: permission_id_fk (INTEGER) → SECURITY_PERMISSION.id_pk                      │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ N:1
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                            SECURITY_PERMISSION                                  │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│ FK: parent_id_fk (INTEGER) → SECURITY_PERMISSION.id_pk (Self-Reference)         │
+│     node_type (INTEGER) - Not Null                                              │
+│     traversal (BOOLEAN) - Not Null                                              │
+│     name (VARCHAR(200)) - Nullable                                              │
+│     type (VARCHAR(255)) - Check ('ADMIN', 'MEMBER')                             │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ 1:N
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                        SECURITY_PERMISSION_REST                                 │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: (permission_id_fk, rest_id_fk) - Composite Primary Key                      │
+│ FK: permission_id_fk (INTEGER) → SECURITY_PERMISSION.id_pk                      │
+│ FK: rest_id_fk (INTEGER) → SECURITY_REST.id_pk                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ N:1
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                SECURITY_REST                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: id_pk (INTEGER) - Primary Key                                               │
+│     http_method (VARCHAR(10)) - Not Null                                        │
+│     url (VARCHAR(200)) - Not Null                                               │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              GLOBAL_PROPERTY                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ PK: (name, profile) - Composite Primary Key                                     │
+│     name (VARCHAR(255)) - Not Null                                              │
+│     profile (VARCHAR(255)) - Not Null                                           │
+│     property (JSONB) - Nullable (Application Configuration)                     │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+RELATIONSHIP SUMMARY WITH PROPER CARDINALITY:
+=============================================
+
+1. USERS (1) ←→ (N) USER_SESSION
+   - One user can have multiple sessions
+   - Each session belongs to one user
+
+2. USERS (1) ←→ (N) BOOK_SHELF
+   - One user can have multiple bookshelves
+   - Each bookshelf belongs to one user
+
+3. BOOK_SHELF (1) ←→ (N) BOOK
+   - One bookshelf can contain multiple books
+   - Each book belongs to one bookshelf
+
+4. USERS (1) ←→ (N) BOOK
+   - One user can own multiple books
+   - Each book belongs to one user
+
+5. USERS (1) ←→ (N) SECURITY_USER_ROLE_REALM
+   - One user can have multiple role-realm assignments
+   - Each role-realm assignment belongs to one user
+
+6. SECURITY_ROLE (1) ←→ (N) SECURITY_USER_ROLE_REALM
+   - One role can be assigned to multiple users
+   - Each role assignment belongs to one role
+
+7. SECURITY_REALM (1) ←→ (N) SECURITY_USER_ROLE_REALM
+   - One realm can have multiple user-role assignments
+   - Each realm assignment belongs to one realm
+
+8. SECURITY_ROLE (1) ←→ (N) SECURITY_ROLE_PERMISSION
+   - One role can have multiple permissions
+   - Each role-permission belongs to one role
+
+9. SECURITY_PERMISSION (1) ←→ (N) SECURITY_ROLE_PERMISSION
+   - One permission can be assigned to multiple roles
+   - Each role-permission belongs to one permission
+
+10. SECURITY_PERMISSION (1) ←→ (N) SECURITY_PERMISSION (Self-Reference)
+    - One permission can have multiple child permissions (hierarchical)
+    - Each child permission belongs to one parent permission
+
+11. SECURITY_PERMISSION (1) ←→ (N) SECURITY_PERMISSION_REST
+    - One permission can be associated with multiple REST endpoints
+    - Each permission-rest belongs to one permission
+
+12. SECURITY_REST (1) ←→ (N) SECURITY_PERMISSION_REST
+    - One REST endpoint can be associated with multiple permissions
+    - Each permission-rest belongs to one REST endpoint
+
+KEY FEATURES:
+============
+
+• Soft Delete: USERS table uses deleted timestamp for soft deletion
+• Unique Constraints: username, phone_number, email are unique (when not deleted)
+• Hierarchical Permissions: SECURITY_PERMISSION supports parent-child relationships
+• Role-Based Access Control: Complete RBAC implementation with roles, permissions, and realms
+• File Management: BOOK table stores file paths for various book formats
+• Session Tracking: USER_SESSION tracks user login sessions
+• Configuration Management: GLOBAL_PROPERTY stores application configuration as JSONB
+
+CARDINALITY NOTATION:
+=====================
+1 ←→ 1    : One-to-One
+1 ←→ N    : One-to-Many
+N ←→ 1    : Many-to-One
+M ←→ N    : Many-to-Many (through junction tables)
