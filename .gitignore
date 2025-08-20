@@ -33,3 +33,24 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Application File Storage ###
+# Book files and temporary files
+books-management/
+books-management/files/
+books-management/files/temp/
+*.pdf
+*.epub
+*.mobi
+*.azw3
+*.iba
+*.book
+
+# Alternative paths (in case of different configurations)
+./books-management/
+./books-management/files/
+./books-management/files/temp/
+
+# Any file storage directories
+**/files/
+**/temp/
