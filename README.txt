@@ -169,9 +169,9 @@ SETUP AND INSTALLATION
 
 2. Database Setup:
    - Create PostgreSQL database: books_management
-   - Run SQL scripts from application/src/main/resources/database/
-   - Run security initialization scripts from application/src/main/resources/security/
-   - Initialize with default super admin user and role definitions
+   - Create schema: book
+   - Execute only the changes.sql file from application/src/main/resources/database/ (first time only)
+   - The script will create all necessary tables and initial data in the book schema
 
 3. Application Configuration:
    - Update application-dev.properties with database credentials
