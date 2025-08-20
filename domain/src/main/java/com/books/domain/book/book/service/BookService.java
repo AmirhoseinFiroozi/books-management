@@ -139,19 +139,23 @@ public class BookService extends AbstractService<BookEntity, BookDao> {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         fileService.checkExtension(extension);
         String fileName = UUID.randomUUID().toString().replace("-", "") + "." + extension;
-        File destination = new File(applicationProperties.getFileCrud().getBaseFilePath() + fileName);
-
-        File directory = destination.getParentFile();
-        if (!directory.exists()) {
-            if (!destination.getParentFile().mkdir()) {
-                throw new SystemException(SystemError.DATA_NOT_FOUND, "couldn't create directory: " + destination.getParentFile()
-                        , 100009);
+        String baseFilePath = applicationProperties.getFileCrud().getBaseFilePath();
+        File baseDirectory = new File(baseFilePath);
+        if (!baseDirectory.isAbsolute()) {
+            baseDirectory = new File(System.getProperty("user.dir"), baseFilePath);
+        }
+        File destination = new File(baseDirectory, fileName);
+        if (!baseDirectory.exists()) {
+            if (!baseDirectory.mkdirs()) {
+                throw new SystemException(SystemError.DATA_NOT_FOUND,
+                        "couldn't create directory: " + baseDirectory.getAbsolutePath(), 100009);
             }
         }
         try {
             file.transferTo(destination);
         } catch (IOException e) {
-            throw new SystemException(SystemError.DATA_NOT_FOUND, "couldn't transfer the file", 100008);
+            throw new SystemException(SystemError.DATA_NOT_FOUND,
+                    "couldn't transfer the file: " + e.getMessage(), 100008);
         }
         return destination.getAbsolutePath();
     }

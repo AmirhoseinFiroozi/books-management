@@ -219,9 +219,9 @@ values ('ms-books-management', 'dev',
         '{
           "fileCrud": {
             "tempFileUrl": "temp/",
-            "baseFilePath": "/opt/books-management/files/",
+            "baseFilePath": "./books-management/files/",
             "imageQuality": 0.3,
-            "tempFilePath": "/opt/books-management/files/temp/",
+            "tempFilePath": "./books-management/files/temp/",
             "allowedExtensions": ["epub","pdf","mobi","azw3","iba","book"]
           },
           "openApiConfig": {
@@ -263,8 +263,8 @@ VALUES (-1, '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8', '+989129999999',
         'book.local@gmail.com', NOW()::TIMESTAMP, 0,
         NULL, FALSE, NULL, 'ادمین اصلی');
 
-INSERT INTO SECURITY_ROLE (ID_PK, CATEGORY, NAME, DELETED, SHOW, TYPE)
-VALUES (-1, NULL, 'ادمین اصلی', FALSE, FALSE, 0);
+INSERT INTO SECURITY_ROLE (ID_PK, NAME, SHOW, TYPE)
+VALUES (-1, 'ادمین اصلی', FALSE, 0);
 
 INSERT INTO SECURITY_REALM (ID_PK, NAME)
 VALUES (-1, 'realm');

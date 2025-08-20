@@ -154,9 +154,10 @@ Supported book formats:
 - BOOK (.book)
 
 File storage configuration:
-- Base path: /opt/books-management/files/
-- Temporary path: /opt/books-management/files/temp/
+- Base path: ./books-management/files/ (relative to application directory)
+- Temporary path: ./books-management/files/temp/ (relative to application directory)
 - Maximum file size: 300MB
+- Cross-platform compatible (Windows, Linux, macOS)
 
 SETUP AND INSTALLATION
 ---------------------
@@ -174,7 +175,7 @@ SETUP AND INSTALLATION
 
 3. Application Configuration:
    - Update application-dev.properties with database credentials
-   - Configure file storage paths
+   - Configure file storage paths (directories will be created automatically on startup)
    - Set JWT security keys
 
 4. Build and Run:
