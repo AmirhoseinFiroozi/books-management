@@ -14,7 +14,7 @@ TECHNICAL STACK
 - Spring Security with JWT
 - Spring Data JPA
 - PostgreSQL Database
-- Spring Cloud (Kafka integration)
+- Spring Cloud
 - Swagger/OpenAPI 3.0
 - Maven (Multi-module project)
 - Lombok
@@ -129,7 +129,7 @@ Key configuration properties:
 - Database connection settings
 - JWT security keys and expiration times
 - File upload paths and size limits
-- Kafka configuration (for distributed features)
+
 
 SECURITY CONFIGURATION
 ---------------------
@@ -165,7 +165,7 @@ SETUP AND INSTALLATION
    - Java 21
    - Maven 3.6+
    - PostgreSQL 12+
-   - Kafka (optional, for distributed features)
+   
 
 2. Database Setup:
    - Create PostgreSQL database: books_management
@@ -239,7 +239,7 @@ MONITORING AND LOGGING
 ---------------------
 - Application logs available in console and configured log files
 - Hibernate SQL logging enabled in development
-- Kafka integration for distributed logging (optional)
+
 - Health check endpoints available
 
 TROUBLESHOOTING
