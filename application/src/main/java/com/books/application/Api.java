@@ -20,7 +20,7 @@ import java.util.TimeZone;
 @ComponentScan(basePackages = {"com.books.utility.*", "com.books.*"})
 public class Api {
     public static void main(String[] args) {
-        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Tehran"));
         SpringApplication.run(Api.class, args);
     }
 }
